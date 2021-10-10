@@ -1,0 +1,88 @@
+// Set 0 -> p100 bit-combined
+// Set 1 -> p80 bit-combined
+// Set 2 -> <blank>
+// Set 3 -> <blank>
+// Set 4 -> CAP
+// Set [5-20] -> Resources
+// [copper, lead, sand, coal]
+// [scrap, spore-pod, titanium, thorium]
+// [graphite, silicon, metaglass, pyratite]
+// [blast-compound, plastanium, phase-fabric, surge-alloy]
+// [21..63] left open for processor stack/heap
+
+// SETUP
+// Auto-determine links
+// Will grab first memory-cell type and first container type
+CONTAINER = null
+CELL = null
+nLINKS = @links
+for i=0; i<nLINKS; i += 1
+  _link = getlink(i)
+  if( CONTAINER == null )
+    CONTAINER = case _link.type
+    when "core-shard"
+      _link
+    when "core-foundation"
+      _link
+    when "core-nucleus"
+      _link
+    when "vault"
+      _link
+    when "container"
+      _link
+    else
+      null
+    end
+  end
+  
+  if( CELL == null )
+    CELL = case _link.type
+    when "memory-cell"
+      _link
+    when "memory-bank"
+      _link
+    else
+      null
+    end
+  end
+end
+
+CAP = CONTAINER.itemCapacity
+
+// Main loop
+// Only go back to setup if # links changes
+while nLINKS == @links
+  CELL[5] = CONTAINER.copper
+  CELL[6] = CONTAINER.lead
+  CELL[7] = CONTAINER.sand
+  CELL[8] = CONTAINER.coal
+  CELL[9] = CONTAINER.scrap
+  CELL[10] = CONTAINER.spore-pod
+  CELL[11] = CONTAINER.titanium
+  CELL[12] = CONTAINER.thorium
+  CELL[13] = CONTAINER.graphite
+  CELL[14] = CONTAINER.silicon
+  CELL[15] = CONTAINER.metaglass
+  CELL[16] = CONTAINER.pyratite
+  CELL[17] = CONTAINER.blast-compound
+  CELL[18] = CONTAINER.plastanium
+  CELL[19] = CONTAINER.phase-fabric
+  CELL[20] = CONTAINER.surge-alloy
+
+  P80 = CAP * 0.8
+
+  acc = 0
+  acc80 = 0
+  for i in 5 .. 20
+  val = CELL[i]
+  right = val < CAP
+  right80 = val < CAP80
+  acc = acc << 1
+  acc = acc | val
+  acc80 = acc80 << 1
+  acc80 = acc80 | val
+  end
+
+  CELL[0] = acc
+  CELL[1] = acc80
+end

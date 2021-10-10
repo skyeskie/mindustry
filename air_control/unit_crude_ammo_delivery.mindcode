@@ -1,0 +1,94 @@
+if(STATE === null || STATE < 0 || STATE > 4)
+  FLAG = @x * 10000 + @y
+
+  CONTAINER = foundation1
+  Cx = CONTAINER.x
+  Cy = CONTAINER.y
+  
+  if(@unit === null)
+    STATE = 0
+  else
+    STATE = 1
+  end
+  
+  ITR=0
+  tryDrop = 0
+end
+
+while @unit === null
+  ubind(@flare)
+  flag(FLAG)
+  STATE = 1
+end
+
+while true
+  print("Driving: ", @unit, " # ", @unit.flag, "\n")
+  print("  at (", @unit.x, ", ", @unit.y, ")\n")
+
+  if( @unit.totalItems == 0 )
+    print("-> State resupply\n")
+    STATE = 2 
+  end
+
+  // STATE 1 - rest
+  if( STATE == 1 )
+    print("STATE: idle\n")
+    ITR = ITR % @links
+    TARGET = getlink(ITR)
+    if TARGET.ammo < TARGET.ammoCapacity 
+      print("-> State reload target (", ITR, ")\n")
+      Tx = TARGET.x
+      Ty = TARGET.y
+      STATE = 3
+      tryDrop = 0
+    else
+      ITR += 1
+    end
+
+    if STATE == 1
+      print("Idle: return to control\n")
+      approach(@thisx, @thisy, 5)
+    end
+  end
+
+  if( STATE == 2 )
+    print("\n2: Fetching ammo")
+    if( within(Cx, Cy, 1) )
+      print("Pickup. -> IDLE\n")
+      itemTake(CONTAINER, @pyratite, @unit.itemCapacity)
+      STATE = 1 // Idle
+    else
+      print(" (", Cx, ",", Cy, ")")
+      approach(Cx, Cy, 1)
+    end
+  end
+
+
+  if( STATE == 3 )
+    print("\nDelivering ammo\n")
+    if( within(Tx, Ty, 4) )
+      tryDrop += 1
+      toDrop = TARGET.ammoCapacity - TARGET.ammo
+      print("Dropping (",tryDrop, "):", toDrop, "\n")
+      itemDrop( TARGET, toDrop)
+      if( TARGET.ammo == TARGET.ammoCapacity )
+        print("Done. -> IDLE")
+        STATE = 1
+      end
+      
+      if tryDrop > 10
+        ITR += 1
+        STATE = 1
+      end
+    else
+      approach(Tx, Ty, 1)
+    end
+  end
+
+  print("\n-----------------------")
+  print("\nAmmo:", TARGET.ammo)
+  print("\nAmmoCap:", TARGET.ammoCapacity)
+  print("\nUnitCap: ", @unit.itemCapacity)
+  print("\nUnitCarry: ", @unit.totalItems)
+  printflush(message1)  
+end 

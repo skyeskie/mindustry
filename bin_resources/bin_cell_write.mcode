@@ -1,0 +1,95 @@
+set CONTAINER null
+set CELL null
+set nLINKS @links
+set i 0
+jump 46 greaterThanEq i nLINKS
+getlink _link i
+jump 31 notEqual CONTAINER null
+sensor ast0 _link @type
+set __tmp7 "core-shard"
+jump 12 notEqual ast0 __tmp7
+set __tmp6 _link
+jump 29 always 0 0
+set __tmp8 "core-foundation"
+jump 16 notEqual ast0 __tmp8
+set __tmp6 _link
+jump 29 always 0 0
+set __tmp9 "core-nucleus"
+jump 20 notEqual ast0 __tmp9
+set __tmp6 _link
+jump 29 always 0 0
+set __tmp10 "vault"
+jump 24 notEqual ast0 __tmp10
+set __tmp6 _link
+jump 29 always 0 0
+set __tmp11 "container"
+jump 28 notEqual ast0 __tmp11
+set __tmp6 _link
+jump 29 always 0 0
+set __tmp6 null
+set CONTAINER __tmp6
+jump 31 always 0 0
+jump 44 notEqual CELL null
+sensor ast1 _link @type
+set __tmp16 "memory-cell"
+jump 37 notEqual ast1 __tmp16
+set __tmp15 _link
+jump 42 always 0 0
+set __tmp17 "memory-bank"
+jump 41 notEqual ast1 __tmp17
+set __tmp15 _link
+jump 42 always 0 0
+set __tmp15 null
+set CELL __tmp15
+jump 44 always 0 0
+op add i i 1
+jump 4 always 0 0
+jump 93 notEqual nLINKS @links
+sensor __tmp22 CONTAINER @copper
+write __tmp22 CELL 5
+sensor __tmp24 CONTAINER @lead
+write __tmp24 CELL 6
+sensor __tmp26 CONTAINER @sand
+write __tmp26 CELL 7
+sensor __tmp28 CONTAINER @coal
+write __tmp28 CELL 8
+sensor __tmp30 CONTAINER @scrap
+write __tmp30 CELL 9
+sensor __tmp32 CONTAINER @spore-pod
+write __tmp32 CELL 10
+sensor __tmp34 CONTAINER @titanium
+write __tmp34 CELL 11
+sensor __tmp36 CONTAINER @thorium
+write __tmp36 CELL 12
+sensor __tmp38 CONTAINER @graphite
+write __tmp38 CELL 13
+sensor __tmp40 CONTAINER @silicon
+write __tmp40 CELL 14
+sensor __tmp42 CONTAINER @metaglass
+write __tmp42 CELL 15
+sensor __tmp44 CONTAINER @pyratite
+write __tmp44 CELL 16
+sensor __tmp46 CONTAINER @blast-compound
+write __tmp46 CELL 17
+sensor __tmp48 CONTAINER @plastanium
+write __tmp48 CELL 18
+sensor __tmp50 CONTAINER @phase-fabric
+write __tmp50 CELL 19
+sensor __tmp52 CONTAINER @surge-alloy
+write __tmp52 CELL 20
+set acc 0
+set acc80 0
+set i 5
+jump 90 greaterThan i 20
+read val CELL i
+op shl acc acc 1
+op or acc acc val
+op shl acc80 acc80 1
+op or acc80 acc80 val
+op add i i 1
+jump 82 always 0 0
+write acc CELL 0
+write acc80 CELL 1
+jump 46 always 0 0
+end
+ 

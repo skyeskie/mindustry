@@ -1,0 +1,57 @@
+jump 2 always unit null
+control enabled unloader1 false 0 0 0
+sensor unit factory1 @config
+jump 1 strictEqual unit null
+control enabled unloader1 true 0 0 0
+jump 11 equal unit @flare
+jump 13 equal unit @mono
+jump 21 equal unit @dagger
+jump 29 equal unit @crawler
+jump 37 equal unit @nova
+jump 49 equal unit @risso
+control config unloader1 @silicon 0 0 0
+end
+sensor silicon factory1 @silicon
+sensor lead factory1 @lead
+jump 18 greaterThan silicon 30
+control config unloader1 @silicon 0 0 0
+jump 20 always x false
+jump 20 greaterThan lead 15
+control config unloader1 @lead 0 0 0
+end
+sensor silicon factory1 @silicon
+sensor lead factory1 @lead
+jump 26 greaterThan silicon 10
+control config unloader1 @silicon 0 0 0
+jump 28 always x false
+jump 28 greaterThan lead 10
+control config unloader1 @lead 0 0 0
+end
+sensor silicon factory1 @silicon
+sensor coal factory1 @coal
+jump 34 greaterThan silicon 10
+control config unloader1 @silicon 0 0 0
+jump 36 always x false
+jump 36 greaterThan coal 20
+control config unloader1 @coal 0 0 0
+end
+sensor silicon factory1 @silicon
+sensor lead factory1 @lead
+sensor titanium factory1 @titanium
+jump 43 greaterThan silicon 30
+control config unloader1 @silicon 0 0 0
+jump 48 always x false
+jump 46 greaterThan lead 20
+control config unloader1 @lead 0 0 0
+jump 48 always x false
+jump 48 greaterThan titanium 20
+control config unloader1 @titanium 0 0 0
+end
+sensor silicon factory1 @silicon
+sensor metaglass factory1 @metaglass
+jump 54 greaterThan silicon 20
+control config unloader1 @silicon 0 0 0
+jump 56 always x false
+jump 56 greaterThan metaglass 20
+control config unloader1 @metaglass 0 0 0
+end

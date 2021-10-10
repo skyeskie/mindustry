@@ -1,0 +1,36 @@
+// Takes the firse link, and copies the first 20
+// cells to all other links
+//
+// Fails if first link not a memory cell
+// 
+// First 2 cells are updated more frequently
+//
+// Intended scructure:
+// - 0: BitFlags, true when resource < 100%
+// - 1: BitFlage, true when resource < 80%
+// - 2-3: <reserved, slow copy>
+// - 4: resource CAP
+// - 5-20: Resources
+//
+// Order for the bit flags and resources are:
+// [copper, lead, sand, coal]
+// [scrap, spore-pod, titanium, thorium]
+// [graphite, silicon, metaglass, pyratite]
+// [blast-compound, plastanium, phase-fabric, surge-alloy]
+//
+// This leaves all cells above 20 for local stack/heap options
+
+CELLindex=0
+CELL=getlink(CELLindex)
+for i in 2..20
+  update = CELL[i]
+  for j = 0; j < @links; j += 1
+    if j != CELLindex
+      TARGET=getlink(j)
+      //We want the cap flags to update faster
+      TARGET[0] = CELL[0]
+      TARGET[1] = CELL[1]
+      TARGET[i] = update
+    end
+  end
+end

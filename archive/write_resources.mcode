@@ -1,0 +1,48 @@
+set CONTAINER foundation1
+set CELL cell1
+sensor CAP CONTAINER @itemCapacity
+write CAP CELL 0
+sensor _tmp CONTAINER @copper
+write _tmp CELL 1
+sensor _tmp CONTAINER @lead
+write _tmp CELL 2
+sensor _tmp CONTAINER @sand
+write _tmp CELL 3
+sensor _tmp CONTAINER @coal
+write _tmp CELL 4
+sensor _tmp CONTAINER @titanium
+write _tmp CELL 5
+sensor _tmp CONTAINER @graphite
+write _tmp CELL 6
+sensor _tmp CONTAINER @silicon
+write _tmp CELL 7
+sensor _tmp CONTAINER @metaglass
+write _tmp CELL 8
+sensor _tmp CONTAINER @pyratite
+write _tmp CELL 9
+sensor _tmp CONTAINER @blast-compound
+write _tmp CELL 10
+sensor _tmp CONTAINER @spore-pod
+write _tmp CELL 11
+sensor _tmp CONTAINER @scrap
+write _tmp CELL 12
+sensor _tmp CONTAINER @plastanium
+write _tmp CELL 13
+sensor _tmp CONTAINER @thorium
+write _tmp CELL 14
+sensor _tmp CONTAINER @phase-fabric
+write _tmp CELL 15
+print "Put surge-alloy here"
+write 0 CELL 16
+set ITR 0
+op mul PCT80 CAP 0.8
+op add ITR ITR 1
+op add PTR_MAX ITR 16
+op add PTR_80 ITR 32
+read N CELL ITR
+op lessThan ltMax N CAP
+op lessThan lt80 N PCT80
+write ltMax CELL PTR_MAX
+write lt80 CELL PTR_80
+jump 38 lessThanEq ITR 16
+end

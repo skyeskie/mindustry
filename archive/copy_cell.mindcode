@@ -1,0 +1,9 @@
+for addr in 0...31
+  cell2[addr] = cell1[addr]
+  cell3[addr] = cell1[addr]
+  cell4[addr] = cell1[addr]
+  cell5[addr] = cell1[addr]
+  cell6[addr] = cell1[addr]
+  cell7[addr] = cell1[addr]
+  cell8[addr] = cell1[addr]
+end

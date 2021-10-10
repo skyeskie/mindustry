@@ -1,0 +1,235 @@
+// MIndustry auto-resource management
+//
+// The goal is to have minimum setup for resource management
+//
+// Pre: memory cell using the binary signing (and remainder for this use)
+// See the write/copy programs for more details on that structure
+//
+// This will use 21..63 of the cell
+//
+// Configuration:
+// 1. Add links to memory cell and structures for stopping when resources full
+//
+// Note: This can be conveyors, production buildings, sorters, and unloaders
+// Drills are NOT included and are ignored*
+//
+// That's it. No editing variables.
+//
+// Then this program does the rest:
+// 1. Grabs the first linked memory cell for use (TODO)
+// 2. Determines what resource is should be checked for each link
+// 3. Stores configuration
+// 4. Loops over configured links and enables/disables based on resource status
+//
+// To reconfigure (ie your conveyor belt or unloader changed), change the
+// number of links OR open the script for editing then close it out
+
+//Setup
+while @links > 20
+  print("Error: Max 20 links exceded")
+  printflush(message1)
+  // We're just going to assume a message1
+  // Could hammer print at every link, but seems like overkill
+end
+
+print("Running setup")
+printflush(message1)
+print("SETUP:\n")
+
+CELL=cell1
+MASK16BIT = (1 << 16) - 1
+
+//TODO: loop until find a CELL ?
+
+//Allocate CELL
+//
+//Structure:
+//[0..20] taken up by binary capacity signaling
+//[21..40] allocated for link configuration (what resource to check)
+
+
+// Loop through links to configure
+nLinks = @links
+nConfigured = 0
+for linkNum = 0; linkNum < nLinks; linkNum+= 1
+  _link = getlink(linkNum)
+  
+  debug = false
+  _isConveyor = null
+
+  print("\nL#:", linkNum, "/", @links)
+  print("\nLt: ", _link.type)
+  _mat = null
+  _mask = case _link.type
+  when @conveyor
+    _isConveyor = true
+  when @titanium-conveyor
+    _isConveyor = true
+  when @plastanium-conveyor
+    _isConveyor = true
+  when @armored-conveyor
+    _isConveyor = true
+  when @router
+    _isConveyor = true
+  when @phase-conveyor
+    _isConveyor = true
+  when @sorter
+    _mat = _link.config
+  when @inverted-sorter
+    _mat = _link.config
+  when @unloader
+    _mat = _link.config
+  when @graphite-press
+    1 << 8
+  when @multi-press
+    1 << 8
+  when @silicon-smelter
+    1 << 9
+  when @silicon-crucible
+    1 << 9
+  when @kiln
+    1 << 10
+  when @plastanium-compressor
+    1 << 13
+  when @phase-weaver
+    1 << 14
+  when @alloy-smelter
+    1 << 15
+  when @pyratite-mixer
+    1 << 11
+  when @blast-mixer
+    1 << 12
+  when @pulverizer
+    1 << 2
+  when @coal-centrifuge
+    1 << 3
+  else
+    null // Unsupported
+  end
+  
+  print("\nFirst check - Mask: ", _mask)
+  print("\n  (mat: ", _mat, " | conveyor: ", _isConveyor, " )\n")
+  
+  if(_isConveyor != null)
+    debug = true
+    _mask = null
+    print("\n\nEntering handleConveyor")
+    // Might need to increase for faster processors
+    // Or could potentially use @tick of some form to determine
+    for j = 1; j < 100 && _mat == null; j += 1
+        _mat = _link.firstItem
+    end
+    print("\nRes: ", _mat, " (", j, ")\n")
+  end
+  
+  if(_mat != null)
+    debug = true
+    // Some items need further material lookup (conveyor, separator, etc)
+    print("\n->matLookup for:", _mat)
+    _mask = case _mat
+    when @copper
+        print("@copper")
+        1 << 0
+    when @lead
+        print("@lead")
+        1 << 1
+    when @sand
+        print("@sand")
+        1 << 2
+    when @coal
+        print("@coal")
+        1 << 3
+    when @scrap
+        print("@scrap")
+        1 << 4
+    when @spore-pod
+        print("@spore-pod")
+        1 << 5
+    when @titanium
+        print("@titanium")
+        1 << 6
+    when @thorium
+        print("@thorium")
+        1 << 7
+    when @graphite
+        print("@graphite")
+        1 << 8
+    when @silicon
+        print("@silicon")
+        1 << 9
+    when @metaglass
+        print("@metaglass")
+        1 << 10
+    when @pyratite
+        print("@pyratite")
+        1 << 11
+    when @blast-compound
+        print("@blast-compound")
+        1 << 12
+    when @plastanium
+        print("@plastanium")
+        1 << 13
+    when @phase-fabric
+        print("@phase-fabric")
+        1 << 14
+    when @surge-alloy
+        print("@surge-alloy")
+        1 << 15
+    end
+    
+    print("\nMask Result: ", _mask)
+  end
+
+  print("\n\n------------------------\nConfig Results:\n")
+  
+  if _mask != null
+    linkNumShifted = linkNum << 16
+    combinedMask = linkNumShifted | _mask
+    addrSave = nConfigured + 21
+    print("\nSaving: ", combinedMask)
+    print("\ninto cell: ", addrSave)
+    CELL[addrSave] = combinedMask
+    nConfigured += 1
+  else
+    print(_link.type, " - No mask\n")
+  end
+
+  printflush(message1)
+  print("SETUP:\n")
+end
+
+
+print("\n\nEndingConfig\n")
+print("Configured: ", nConfigured)
+printflush(message1)
+
+//TODO: Need to store link reference as well...
+
+print("Configured links: ", nConfigured, " / ", @links)
+for i=0; i < nConfigured; i += 1
+  addr = i + 21
+  combined = CELL[addr]
+  mask = combined & MASK16BIT
+  linkNum = combined >> 16
+  link = getlink(linkNum)
+  print("\nCfg #", i, " @", addr, " -> link# ", linkNum, " :: ", mask)
+  print("\n    (", link.type, ")\n")
+end
+
+printflush(message1)
+
+// Main loop through configured links
+// Reconfigure if # links changes
+while (nLinks == @links)
+  lt100 = CELL[0]
+  for i = 0; i < nConfigured; i+=1
+    addr = i + 21
+    combined = CELL[addr]
+    mask = combined & MASK16BIT
+    linkNum = combined >> 16
+    _link = getlink(linkNum)
+    _link.enabled = (mask & lt100) != 0
+  end
+end
+
+

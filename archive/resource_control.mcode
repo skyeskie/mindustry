@@ -1,0 +1,92 @@
+set CELL cell1
+read CAP CELL 0
+read nCOPPER CELL 1
+read nLEAD CELL 2
+read nSAND CELL 3
+read nCOAL CELL 4
+read nTITAN CELL 5
+read nGRAPH CELL 6
+read nSILIC CELL 7
+read nMGLAS CELL 8
+read nPYRAT CELL 9
+read nBLAST CELL 10
+read nSPORE CELL 11
+read nSCRAP CELL 12
+read nPLAST CELL 13
+read nTHORM CELL 14
+read nPHASE CELL 15
+read nSURGE CELL 16
+
+read rCOPPR CELL 17
+read rLEAD CELL 18
+read rSAND CELL 19
+read rCOAL CELL 20
+read rTITAN CELL 21
+read rGRAPH CELL 22
+read rSILIC CELL 23
+read rMGLAS CELL 24
+read rPYRAT CELL 25
+read rBLAST CELL 26
+read rSPORE CELL 27
+read rSCRAP CELL 28
+read rPLAST CELL 29
+read rTHORM CELL 30
+read rPHASE CELL 31
+read rSURGE CELL 32
+
+read eCOPPR CELL 33
+read eLEAD CELL 34
+read eSAND CELL 35
+read eCOAL CELL 36
+read eTITAN CELL 37
+read eGRAPH CELL 38
+read eSILIC CELL 39
+read eMGLAS CELL 40
+read ePYRAT CELL 41
+read eBLAST CELL 42
+read eSPORE CELL 43
+read eSCRAP CELL 44
+read ePLAST CELL 45
+read eTHORM CELL 46
+read ePHASE CELL 47
+read eSURGE CELL 48
+
+control enabled conveyor1 rSCRAP 0 0 0
+control enabled conveyor2 rLEAD 0 0 0
+control enabled kiln1 rMGLAS 0 0 0
+control enabled kiln2 rMGLAS 0 0 0
+control enabled kiln3 rMGLAS 0 0 0
+control enabled press1 rGRAPH 0 0 0
+control enabled press2 rGRAPH 0 0 0
+control enabled smelter1 rSILIC 0 0 0
+control enabled smelter2 rSILIC 0 0 0
+
+control enabled conveyor2 rSILIC 0 0 0
+control enabled conveyor3 rGRAPH 0 0 0
+control enabled conveyor4 rGRAPH 0 0 0
+control enabled conveyor5 rGRAPH 0 0 0
+
+control enabled conveyor1 rCOPPER 0 0 0
+control enabled conveyor2 rCOPPER 0 0 0
+control enabled conveyor3 rCOPPER 0 0 0
+control enabled conveyor4 rPYRAT 0 0 0
+control enabled conveyor5 rSAND 0 0 0
+control enabled conveyor6 rSAND 0 0 0
+control enabled conveyor7 rSILIC 0 0 0
+control enabled conveyor8 rSPORE 0 0 0
+control enabled conveyor9 rSPORE 0 0 0
+control enabled conveyor10 rSPORE 0 0 0
+control enabled conveyor11 rSPORE 0 0 0
+control enabled conveyor12 rSPORE 0 0 0
+
+control enabled conveyor1 rCOAL 0 0 0
+control enabled conveyor2 rGRAPH 0 0 0
+control enabled conveyor3 rGRAPH 0 0 0
+control enabled conveyor4 rGRAPH 0 0 0
+
+
+
+
+
+
+

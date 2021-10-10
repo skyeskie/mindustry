@@ -1,0 +1,18 @@
+getlink CELL __tmp0
+set i 2
+jump 16 greaterThan i 20
+read update CELL i
+set j 1
+jump 14 greaterThanEq j @links
+getlink TARGET j
+read __tmp10 CELL 0
+write __tmp10 TARGET 0
+read __tmp13 CELL 1
+write __tmp13 TARGET 1
+write update TARGET i
+op add j j 1
+jump 5 always 0 0
+op add i i 1
+jump 2 always 0 0
+end
+ 

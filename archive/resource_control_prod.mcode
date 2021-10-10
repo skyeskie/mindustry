@@ -1,0 +1,39 @@
+set CELL cell1
+read rGRAPH CELL 22
+read rSILIC CELL 23
+read rMGLAS CELL 24
+read rPYRAT CELL 25
+read rBLAST CELL 26
+read rSPORE CELL 27
+read rPLAST CELL 29
+read rPHASE CELL 31
+read rSURGE CELL 32
+control enabled kiln1 rMGLAS 0 0 0
+control enabled kiln2 rMGLAS 0 0 0
+control enabled kiln3 rMGLAS 0 0 0
+control enabled kiln4 rMGLAS 0 0 0
+control enabled kiln5 rMGLAS 0 0 0
+
+control enabled press1 rGRAPH 0 0 0
+control enabled press2 rGRAPH 0 0 0
+control enabled press3 rGRAPH 0 0 0
+control enabled press4 rGRAPH 0 0 0
+control enabled press5 rGRAPH 0 0 0
+
+control enabled smelter1 rSILIC 0 0 0
+control enabled smelter2 rSILIC 0 0 0
+control enabled smelter3 rSILIC 0 0 0
+control enabled smelter4 rSILIC 0 0 0
+control enabled smelter5 rSILIC 0 0 0
+
+control enabled mixer1 rPYRAT 0 0 0
+control enabled mixer2 rPYRAT 0 0 0
+control enabled mixer3 rPYRAT 0 0 0
+control enabled mixer4 rPYRAT 0 0 0
+control enabled mixer5 rPYRAT 0 0 0
+
+control enabled cultivator1 rSPORE 0 0 0
+control enabled cultivator2 rSPORE 0 0 0
+control enabled cultivator3 rSPORE 0 0 0
+control enabled cultivator4 rSPORE 0 0 0
+control enabled cultivator5 rSPORE 0 0 0

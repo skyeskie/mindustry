@@ -1,0 +1,188 @@
+circuitBreak = true
+while(circuitBreak == true)
+  print("[red]Disabled by switch")
+  print(message1)
+  switchOn = switch1.enabled
+  circuitBreak = !switchOn
+  factory1.enabled = switchOn
+  reconstructor1.enabled = switchOn
+end
+
+// Make sure states defined
+if(STATE_IDLE != 1)
+  print("\nSetting state variables")
+  STATE_INIT = 0
+  STATE_IDLE = 1
+  STATE_PICKUP_F = 2
+  STATE_DELIVER_F = 3
+  STATE_PICKUP_R = 4
+  STATE_DELIVER_R = 5
+end
+
+// Make sure have unit
+while @unit === null
+  print("\nBinding flare...")
+  UNIT_TYPE = @flare
+  FLAG = @thisx + (@thisy / 1000)
+  ubind(UNIT_TYPE)
+  if(@unit.flag == 0 || @unit.flag == FLAG)
+    flag(FLAG)
+    STATE = 0
+  end
+  printflush(message1)
+end
+
+case(STATE)
+when STATE_INIT
+  print("STATE: [red]Init[white]")
+when STATE_IDLE
+  print("STATE: [yellow]Idle[white]") 
+when STATE_PICKUP_F
+  print("STATE: [green]Pickup[white] (Factory)")
+when STATE_DELIVER_F
+  print("STATE: [green]Deliver[white] (Factory)")
+when STATE_PICKUP_R
+  print("STATE: [green]Pickup[white] (Reconst)")
+when STATE_DELIVER_R
+  print("STATE: [green]Deliver[white] (Reconst)")
+else
+  print("[red]UNKNOWN STATE: ", STATE)
+end
+
+print("\nUnit: ", @unit, " # ", @unit.flag, "\n")
+
+// Error state
+if(STATE === null || STATE < 0 || STATE > 5)
+  // We have a unit, but state is out of bounds
+  print("Invalid State: ", STATE)
+  printflush(message1)
+end
+
+if(STATE == STATE_INIT)
+  FACTORY = factory1
+  Fx = FACTORY.x \ 1
+  Fy = FACTORY.y \ 1
+  RECONST = reconstructor1
+  Rx = RECONST.x \ 1
+  Ry = RECONST.y \ 1
+  
+
+  while found != true
+    print("Finding core...")
+    printflush(message1)
+    found = ulocate(building, core, false, Cx, Cy, CORE)
+  end
+  CAP = CORE.capacity
+  CAP_F = FACTORY.itemCapacity
+  CAP_R = RECONST.itemCapacity
+  UNIT_CAP = @unit.itemCapacity
+  ThrF = CAP_F - UNIT_CAP
+  ThrR = CAP_R - UNIT_CAP
+  STATE = STATE_IDLE
+end
+
+print("Factory\n - Silicon: ")
+if(FACTORY.silicon == CAP_F)
+  print("[green]", CAP_F, "[white]/", CAP_F)
+else
+  print("[red]", FACTORY.silicon, "[white]/", CAP_F)
+end
+print("\nReconstructor\n - Silicon: ")
+if(RECONST.silicon == CAP_R)
+  print("[green]", CAP_R, "[white]/", CAP_R)
+else
+  print("[red]", RECONST.silicon, "[white]/", CAP_R)
+end
+print("\n - Graphite: ")
+if(RECONST.graphite == CAP_R)
+  print("[green]", CAP_R, "[white]/", CAP_R)
+else
+  print("[red]", RECONST.graphite, "[white]/", CAP_R)
+end
+
+if(STATE == STATE_IDLE)
+  //TODO: Determine next operation
+  //Check - what mats have (close to full)
+  //Check - what core needs
+  
+  lowSilicon = CORE.silicon < 1000
+  lowGraphite = CORE.graphite < 1000
+
+  MAT = null
+  
+  if( lowSilicon )
+    print("\nCore Silicon: [red]", CORE.silicon, "[white]")
+  else
+    print("\nCore Silicon: [green]", CORE.silicon, "[white]")
+    if(FACTORY.silicon <= ThrF)
+      MAT = @silicon
+      STATE = STATE_PICKUP_F
+    else
+      if(RECONST.silicon <= ThrR)
+        MAT = @silicon
+        STATE = STATE_PICKUP_R
+      end
+    end
+  end
+
+  if( lowGraphite )
+    print("\nCore Graphite: [red]", CORE.graphite, "[white]")
+  else
+    print("\nCore Graphite: [green]", CORE.graphite, "[white]")
+    if MAT == null && RECONST.graphite <= ThrR
+      MAT = @graphite
+      STATE = STATE_PICKUP_R
+    end
+  end
+  
+  if( ! within(Cx, Cy, 6) )
+    print("\n Heading towards core")
+    approach(Cx, Cy, 6)
+  end
+end
+
+if(STATE == STATE_PICKUP_F || STATE == STATE_PICKUP_R)
+  if(within(Cx, Cy, 3))
+    print("Pickup: ", MAT)
+    itemTake(CORE, MAT, @unit.itemCapacity)
+    if(@unit.totalItems == @unit.itemCapacity)
+      STATE = if STATE == STATE_PICKUP_F
+        STATE_DELIVER_F
+      else
+        STATE_DELIVER_R
+      end
+    end
+  else
+    print("Approaching Core")
+    approach(Cx, Cy, 1)
+  end
+end
+
+if(STATE == STATE_DELIVER_F)
+  if(within(Fx, Fy, 3))
+    print("Delivering")
+    itemDrop(FACTORY, @unit.itemCapacity)
+    if(@unit.totalItems == 0)
+      STATE = STATE_IDLE
+    end
+  else
+    print("Approach factory")
+    approach(Fx, Fy, 2)
+  end
+end
+
+if(STATE == STATE_DELIVER_R)
+  if(within(Rx, Ry, 3))
+    print("Delivering")
+    itemDrop(RECONST, @unit.itemCapacity)
+    if(@unit.totalItems == 0)
+      STATE = STATE_IDLE
+    end
+  else
+    print("Approach reconstructor")
+    approach(Rx, Ry, 2)
+  end
+end
+
+print("\nUnit carrying: ", @unit.totalItems, " - ", @unit.firstItem)
+printflush(message1)

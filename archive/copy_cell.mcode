@@ -1,0 +1,20 @@
+set addr 0
+jump 18 greaterThanEq addr 63
+read __tmp3 cell1 addr
+write __tmp3 cell2 addr
+read __tmp4 cell1 addr
+write __tmp4 cell3 addr
+read __tmp5 cell1 addr
+write __tmp5 cell4 addr
+read __tmp6 cell1 addr
+write __tmp6 cell5 addr
+read __tmp7 cell1 addr
+write __tmp7 cell6 addr
+read __tmp8 cell1 addr
+write __tmp8 cell7 addr
+read __tmp9 cell1 addr
+write __tmp9 cell8 addr
+op add addr addr 1
+jump 1 always 0 0
+end
+ 

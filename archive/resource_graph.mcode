@@ -1,0 +1,947 @@
+set CONTAINER foundation1
+set CELL cell1
+sensor CAP CONTAINER @itemCapacity
+write 63 CELL 63
+set __tmp5 200
+set __tmp6 200
+set __tmp7 200
+set __tmp8 255
+draw color __tmp5 __tmp6 __tmp7 __tmp8 0 0
+set __tmp9 0
+set __tmp10 0
+set __tmp11 80
+set __tmp12 10
+draw rect __tmp9 __tmp10 __tmp11 __tmp12 0 0
+set __tmp13 0
+set __tmp14 40
+set __tmp15 80
+set __tmp16 10
+draw rect __tmp13 __tmp14 __tmp15 __tmp16 0 0
+set __tmp17 1
+read __tmp18 CELL 63
+op sub __tmp18 __tmp18 1
+write 29 CELL __tmp18
+write __tmp18 CELL 63
+read __tmp24 CELL 63
+op sub __tmp24 __tmp24 1
+write __tmp17 CELL __tmp24
+write __tmp24 CELL 63
+set @counter 928
+read __tmp31 CELL 63
+read __tmp30 CELL __tmp31
+op add __tmp31 __tmp31 1
+write __tmp31 CELL 63
+set __tmp38 1
+read __tmp39 CELL 63
+op sub __tmp39 __tmp39 1
+write 43 CELL __tmp39
+write __tmp39 CELL 63
+read __tmp45 CELL 63
+op sub __tmp45 __tmp45 1
+write __tmp38 CELL __tmp45
+write __tmp45 CELL 63
+set @counter 909
+read __tmp52 CELL 63
+read __tmp51 CELL __tmp52
+op add __tmp52 __tmp52 1
+write __tmp52 CELL 63
+set __tmp59 10
+set __tmp60 0
+draw image __tmp30 __tmp51 @copper __tmp59 __tmp60 0
+set __tmp61 2
+read __tmp62 CELL 63
+op sub __tmp62 __tmp62 1
+write 60 CELL __tmp62
+write __tmp62 CELL 63
+read __tmp68 CELL 63
+op sub __tmp68 __tmp68 1
+write __tmp61 CELL __tmp68
+write __tmp68 CELL 63
+set @counter 928
+read __tmp75 CELL 63
+read __tmp74 CELL __tmp75
+op add __tmp75 __tmp75 1
+write __tmp75 CELL 63
+set __tmp82 2
+read __tmp83 CELL 63
+op sub __tmp83 __tmp83 1
+write 74 CELL __tmp83
+write __tmp83 CELL 63
+read __tmp89 CELL 63
+op sub __tmp89 __tmp89 1
+write __tmp82 CELL __tmp89
+write __tmp89 CELL 63
+set @counter 909
+read __tmp96 CELL 63
+read __tmp95 CELL __tmp96
+op add __tmp96 __tmp96 1
+write __tmp96 CELL 63
+set __tmp103 10
+set __tmp104 0
+draw image __tmp74 __tmp95 @lead __tmp103 __tmp104 0
+set __tmp105 3
+read __tmp106 CELL 63
+op sub __tmp106 __tmp106 1
+write 91 CELL __tmp106
+write __tmp106 CELL 63
+read __tmp112 CELL 63
+op sub __tmp112 __tmp112 1
+write __tmp105 CELL __tmp112
+write __tmp112 CELL 63
+set @counter 928
+read __tmp119 CELL 63
+read __tmp118 CELL __tmp119
+op add __tmp119 __tmp119 1
+write __tmp119 CELL 63
+set __tmp126 3
+read __tmp127 CELL 63
+op sub __tmp127 __tmp127 1
+write 105 CELL __tmp127
+write __tmp127 CELL 63
+read __tmp133 CELL 63
+op sub __tmp133 __tmp133 1
+write __tmp126 CELL __tmp133
+write __tmp133 CELL 63
+set @counter 909
+read __tmp140 CELL 63
+read __tmp139 CELL __tmp140
+op add __tmp140 __tmp140 1
+write __tmp140 CELL 63
+set __tmp147 10
+set __tmp148 0
+draw image __tmp118 __tmp139 @sand __tmp147 __tmp148 0
+set __tmp149 4
+read __tmp150 CELL 63
+op sub __tmp150 __tmp150 1
+write 122 CELL __tmp150
+write __tmp150 CELL 63
+read __tmp156 CELL 63
+op sub __tmp156 __tmp156 1
+write __tmp149 CELL __tmp156
+write __tmp156 CELL 63
+set @counter 928
+read __tmp163 CELL 63
+read __tmp162 CELL __tmp163
+op add __tmp163 __tmp163 1
+write __tmp163 CELL 63
+set __tmp170 4
+read __tmp171 CELL 63
+op sub __tmp171 __tmp171 1
+write 136 CELL __tmp171
+write __tmp171 CELL 63
+read __tmp177 CELL 63
+op sub __tmp177 __tmp177 1
+write __tmp170 CELL __tmp177
+write __tmp177 CELL 63
+set @counter 909
+read __tmp184 CELL 63
+read __tmp183 CELL __tmp184
+op add __tmp184 __tmp184 1
+write __tmp184 CELL 63
+set __tmp191 10
+set __tmp192 0
+draw image __tmp162 __tmp183 @coal __tmp191 __tmp192 0
+set __tmp193 5
+read __tmp194 CELL 63
+op sub __tmp194 __tmp194 1
+write 153 CELL __tmp194
+write __tmp194 CELL 63
+read __tmp200 CELL 63
+op sub __tmp200 __tmp200 1
+write __tmp193 CELL __tmp200
+write __tmp200 CELL 63
+set @counter 928
+read __tmp207 CELL 63
+read __tmp206 CELL __tmp207
+op add __tmp207 __tmp207 1
+write __tmp207 CELL 63
+set __tmp214 5
+read __tmp215 CELL 63
+op sub __tmp215 __tmp215 1
+write 167 CELL __tmp215
+write __tmp215 CELL 63
+read __tmp221 CELL 63
+op sub __tmp221 __tmp221 1
+write __tmp214 CELL __tmp221
+write __tmp221 CELL 63
+set @counter 909
+read __tmp228 CELL 63
+read __tmp227 CELL __tmp228
+op add __tmp228 __tmp228 1
+write __tmp228 CELL 63
+set __tmp235 10
+set __tmp236 0
+draw image __tmp206 __tmp227 @titanium __tmp235 __tmp236 0
+set __tmp237 6
+read __tmp238 CELL 63
+op sub __tmp238 __tmp238 1
+write 184 CELL __tmp238
+write __tmp238 CELL 63
+read __tmp244 CELL 63
+op sub __tmp244 __tmp244 1
+write __tmp237 CELL __tmp244
+write __tmp244 CELL 63
+set @counter 928
+read __tmp251 CELL 63
+read __tmp250 CELL __tmp251
+op add __tmp251 __tmp251 1
+write __tmp251 CELL 63
+set __tmp258 6
+read __tmp259 CELL 63
+op sub __tmp259 __tmp259 1
+write 198 CELL __tmp259
+write __tmp259 CELL 63
+read __tmp265 CELL 63
+op sub __tmp265 __tmp265 1
+write __tmp258 CELL __tmp265
+write __tmp265 CELL 63
+set @counter 909
+read __tmp272 CELL 63
+read __tmp271 CELL __tmp272
+op add __tmp272 __tmp272 1
+write __tmp272 CELL 63
+set __tmp279 10
+set __tmp280 0
+draw image __tmp250 __tmp271 @graphite __tmp279 __tmp280 0
+set __tmp281 7
+read __tmp282 CELL 63
+op sub __tmp282 __tmp282 1
+write 215 CELL __tmp282
+write __tmp282 CELL 63
+read __tmp288 CELL 63
+op sub __tmp288 __tmp288 1
+write __tmp281 CELL __tmp288
+write __tmp288 CELL 63
+set @counter 928
+read __tmp295 CELL 63
+read __tmp294 CELL __tmp295
+op add __tmp295 __tmp295 1
+write __tmp295 CELL 63
+set __tmp302 7
+read __tmp303 CELL 63
+op sub __tmp303 __tmp303 1
+write 229 CELL __tmp303
+write __tmp303 CELL 63
+read __tmp309 CELL 63
+op sub __tmp309 __tmp309 1
+write __tmp302 CELL __tmp309
+write __tmp309 CELL 63
+set @counter 909
+read __tmp316 CELL 63
+read __tmp315 CELL __tmp316
+op add __tmp316 __tmp316 1
+write __tmp316 CELL 63
+set __tmp323 10
+set __tmp324 0
+draw image __tmp294 __tmp315 @silicon __tmp323 __tmp324 0
+set __tmp325 8
+read __tmp326 CELL 63
+op sub __tmp326 __tmp326 1
+write 246 CELL __tmp326
+write __tmp326 CELL 63
+read __tmp332 CELL 63
+op sub __tmp332 __tmp332 1
+write __tmp325 CELL __tmp332
+write __tmp332 CELL 63
+set @counter 928
+read __tmp339 CELL 63
+read __tmp338 CELL __tmp339
+op add __tmp339 __tmp339 1
+write __tmp339 CELL 63
+set __tmp346 8
+read __tmp347 CELL 63
+op sub __tmp347 __tmp347 1
+write 260 CELL __tmp347
+write __tmp347 CELL 63
+read __tmp353 CELL 63
+op sub __tmp353 __tmp353 1
+write __tmp346 CELL __tmp353
+write __tmp353 CELL 63
+set @counter 909
+read __tmp360 CELL 63
+read __tmp359 CELL __tmp360
+op add __tmp360 __tmp360 1
+write __tmp360 CELL 63
+set __tmp367 10
+set __tmp368 0
+draw image __tmp338 __tmp359 @metaglass __tmp367 __tmp368 0
+set __tmp369 9
+read __tmp370 CELL 63
+op sub __tmp370 __tmp370 1
+write 277 CELL __tmp370
+write __tmp370 CELL 63
+read __tmp376 CELL 63
+op sub __tmp376 __tmp376 1
+write __tmp369 CELL __tmp376
+write __tmp376 CELL 63
+set @counter 928
+read __tmp383 CELL 63
+read __tmp382 CELL __tmp383
+op add __tmp383 __tmp383 1
+write __tmp383 CELL 63
+set __tmp390 9
+read __tmp391 CELL 63
+op sub __tmp391 __tmp391 1
+write 291 CELL __tmp391
+write __tmp391 CELL 63
+read __tmp397 CELL 63
+op sub __tmp397 __tmp397 1
+write __tmp390 CELL __tmp397
+write __tmp397 CELL 63
+set @counter 909
+read __tmp404 CELL 63
+read __tmp403 CELL __tmp404
+op add __tmp404 __tmp404 1
+write __tmp404 CELL 63
+set __tmp411 10
+set __tmp412 0
+draw image __tmp382 __tmp403 @pyratite __tmp411 __tmp412 0
+set __tmp413 10
+read __tmp414 CELL 63
+op sub __tmp414 __tmp414 1
+write 308 CELL __tmp414
+write __tmp414 CELL 63
+read __tmp420 CELL 63
+op sub __tmp420 __tmp420 1
+write __tmp413 CELL __tmp420
+write __tmp420 CELL 63
+set @counter 928
+read __tmp427 CELL 63
+read __tmp426 CELL __tmp427
+op add __tmp427 __tmp427 1
+write __tmp427 CELL 63
+set __tmp434 10
+read __tmp435 CELL 63
+op sub __tmp435 __tmp435 1
+write 322 CELL __tmp435
+write __tmp435 CELL 63
+read __tmp441 CELL 63
+op sub __tmp441 __tmp441 1
+write __tmp434 CELL __tmp441
+write __tmp441 CELL 63
+set @counter 909
+read __tmp448 CELL 63
+read __tmp447 CELL __tmp448
+op add __tmp448 __tmp448 1
+write __tmp448 CELL 63
+set __tmp455 10
+set __tmp456 0
+draw image __tmp426 __tmp447 @blast-compound __tmp455 __tmp456 0
+set __tmp457 11
+read __tmp458 CELL 63
+op sub __tmp458 __tmp458 1
+write 339 CELL __tmp458
+write __tmp458 CELL 63
+read __tmp464 CELL 63
+op sub __tmp464 __tmp464 1
+write __tmp457 CELL __tmp464
+write __tmp464 CELL 63
+set @counter 928
+read __tmp471 CELL 63
+read __tmp470 CELL __tmp471
+op add __tmp471 __tmp471 1
+write __tmp471 CELL 63
+set __tmp478 11
+read __tmp479 CELL 63
+op sub __tmp479 __tmp479 1
+write 353 CELL __tmp479
+write __tmp479 CELL 63
+read __tmp485 CELL 63
+op sub __tmp485 __tmp485 1
+write __tmp478 CELL __tmp485
+write __tmp485 CELL 63
+set @counter 909
+read __tmp492 CELL 63
+read __tmp491 CELL __tmp492
+op add __tmp492 __tmp492 1
+write __tmp492 CELL 63
+set __tmp499 10
+set __tmp500 0
+draw image __tmp470 __tmp491 @spore-pod __tmp499 __tmp500 0
+set __tmp501 12
+read __tmp502 CELL 63
+op sub __tmp502 __tmp502 1
+write 370 CELL __tmp502
+write __tmp502 CELL 63
+read __tmp508 CELL 63
+op sub __tmp508 __tmp508 1
+write __tmp501 CELL __tmp508
+write __tmp508 CELL 63
+set @counter 928
+read __tmp515 CELL 63
+read __tmp514 CELL __tmp515
+op add __tmp515 __tmp515 1
+write __tmp515 CELL 63
+set __tmp522 12
+read __tmp523 CELL 63
+op sub __tmp523 __tmp523 1
+write 384 CELL __tmp523
+write __tmp523 CELL 63
+read __tmp529 CELL 63
+op sub __tmp529 __tmp529 1
+write __tmp522 CELL __tmp529
+write __tmp529 CELL 63
+set @counter 909
+read __tmp536 CELL 63
+read __tmp535 CELL __tmp536
+op add __tmp536 __tmp536 1
+write __tmp536 CELL 63
+set __tmp543 10
+set __tmp544 0
+draw image __tmp514 __tmp535 @scrap __tmp543 __tmp544 0
+set __tmp545 13
+read __tmp546 CELL 63
+op sub __tmp546 __tmp546 1
+write 401 CELL __tmp546
+write __tmp546 CELL 63
+read __tmp552 CELL 63
+op sub __tmp552 __tmp552 1
+write __tmp545 CELL __tmp552
+write __tmp552 CELL 63
+set @counter 928
+read __tmp559 CELL 63
+read __tmp558 CELL __tmp559
+op add __tmp559 __tmp559 1
+write __tmp559 CELL 63
+set __tmp566 13
+read __tmp567 CELL 63
+op sub __tmp567 __tmp567 1
+write 415 CELL __tmp567
+write __tmp567 CELL 63
+read __tmp573 CELL 63
+op sub __tmp573 __tmp573 1
+write __tmp566 CELL __tmp573
+write __tmp573 CELL 63
+set @counter 909
+read __tmp580 CELL 63
+read __tmp579 CELL __tmp580
+op add __tmp580 __tmp580 1
+write __tmp580 CELL 63
+set __tmp587 10
+set __tmp588 0
+draw image __tmp558 __tmp579 @plastanium __tmp587 __tmp588 0
+set __tmp589 14
+read __tmp590 CELL 63
+op sub __tmp590 __tmp590 1
+write 432 CELL __tmp590
+write __tmp590 CELL 63
+read __tmp596 CELL 63
+op sub __tmp596 __tmp596 1
+write __tmp589 CELL __tmp596
+write __tmp596 CELL 63
+set @counter 928
+read __tmp603 CELL 63
+read __tmp602 CELL __tmp603
+op add __tmp603 __tmp603 1
+write __tmp603 CELL 63
+set __tmp610 14
+read __tmp611 CELL 63
+op sub __tmp611 __tmp611 1
+write 446 CELL __tmp611
+write __tmp611 CELL 63
+read __tmp617 CELL 63
+op sub __tmp617 __tmp617 1
+write __tmp610 CELL __tmp617
+write __tmp617 CELL 63
+set @counter 909
+read __tmp624 CELL 63
+read __tmp623 CELL __tmp624
+op add __tmp624 __tmp624 1
+write __tmp624 CELL 63
+set __tmp631 10
+set __tmp632 0
+draw image __tmp602 __tmp623 @thorium __tmp631 __tmp632 0
+set __tmp633 15
+read __tmp634 CELL 63
+op sub __tmp634 __tmp634 1
+write 463 CELL __tmp634
+write __tmp634 CELL 63
+read __tmp640 CELL 63
+op sub __tmp640 __tmp640 1
+write __tmp633 CELL __tmp640
+write __tmp640 CELL 63
+set @counter 928
+read __tmp647 CELL 63
+read __tmp646 CELL __tmp647
+op add __tmp647 __tmp647 1
+write __tmp647 CELL 63
+set __tmp654 15
+read __tmp655 CELL 63
+op sub __tmp655 __tmp655 1
+write 477 CELL __tmp655
+write __tmp655 CELL 63
+read __tmp661 CELL 63
+op sub __tmp661 __tmp661 1
+write __tmp654 CELL __tmp661
+write __tmp661 CELL 63
+set @counter 909
+read __tmp668 CELL 63
+read __tmp667 CELL __tmp668
+op add __tmp668 __tmp668 1
+write __tmp668 CELL 63
+set __tmp675 10
+set __tmp676 0
+draw image __tmp646 __tmp667 @phase-fabric __tmp675 __tmp676 0
+set __tmp677 16
+read __tmp678 CELL 63
+op sub __tmp678 __tmp678 1
+write 494 CELL __tmp678
+write __tmp678 CELL 63
+read __tmp684 CELL 63
+op sub __tmp684 __tmp684 1
+write __tmp677 CELL __tmp684
+write __tmp684 CELL 63
+set @counter 928
+read __tmp691 CELL 63
+read __tmp690 CELL __tmp691
+op add __tmp691 __tmp691 1
+write __tmp691 CELL 63
+set __tmp698 16
+read __tmp699 CELL 63
+op sub __tmp699 __tmp699 1
+write 508 CELL __tmp699
+write __tmp699 CELL 63
+read __tmp705 CELL 63
+op sub __tmp705 __tmp705 1
+write __tmp698 CELL __tmp705
+write __tmp705 CELL 63
+set @counter 909
+read __tmp712 CELL 63
+read __tmp711 CELL __tmp712
+op add __tmp712 __tmp712 1
+write __tmp712 CELL 63
+set __tmp719 10
+set __tmp720 0
+draw image __tmp690 __tmp711 @surge-alloy __tmp719 __tmp720 0
+drawflush display1
+jump 806 notEqual true true
+sensor __tmp721 CONTAINER @copper
+set __tmp722 1
+read __tmp723 CELL 63
+op sub __tmp723 __tmp723 1
+write 532 CELL __tmp723
+write __tmp723 CELL 63
+read __tmp729 CELL 63
+op sub __tmp729 __tmp729 1
+write __tmp721 CELL __tmp729
+write __tmp729 CELL 63
+read __tmp735 CELL 63
+op sub __tmp735 __tmp735 1
+write __tmp722 CELL __tmp735
+write __tmp735 CELL 63
+set @counter 807
+read __tmp742 CELL 63
+op add __tmp742 __tmp742 1
+write __tmp742 CELL 63
+sensor __tmp749 CONTAINER @lead
+set __tmp750 2
+read __tmp751 CELL 63
+op sub __tmp751 __tmp751 1
+write 550 CELL __tmp751
+write __tmp751 CELL 63
+read __tmp757 CELL 63
+op sub __tmp757 __tmp757 1
+write __tmp749 CELL __tmp757
+write __tmp757 CELL 63
+read __tmp763 CELL 63
+op sub __tmp763 __tmp763 1
+write __tmp750 CELL __tmp763
+write __tmp763 CELL 63
+set @counter 807
+read __tmp770 CELL 63
+op add __tmp770 __tmp770 1
+write __tmp770 CELL 63
+sensor __tmp777 CONTAINER @sand
+set __tmp778 3
+read __tmp779 CELL 63
+op sub __tmp779 __tmp779 1
+write 568 CELL __tmp779
+write __tmp779 CELL 63
+read __tmp785 CELL 63
+op sub __tmp785 __tmp785 1
+write __tmp777 CELL __tmp785
+write __tmp785 CELL 63
+read __tmp791 CELL 63
+op sub __tmp791 __tmp791 1
+write __tmp778 CELL __tmp791
+write __tmp791 CELL 63
+set @counter 807
+read __tmp798 CELL 63
+op add __tmp798 __tmp798 1
+write __tmp798 CELL 63
+sensor __tmp805 CONTAINER @coal
+set __tmp806 4
+read __tmp807 CELL 63
+op sub __tmp807 __tmp807 1
+write 586 CELL __tmp807
+write __tmp807 CELL 63
+read __tmp813 CELL 63
+op sub __tmp813 __tmp813 1
+write __tmp805 CELL __tmp813
+write __tmp813 CELL 63
+read __tmp819 CELL 63
+op sub __tmp819 __tmp819 1
+write __tmp806 CELL __tmp819
+write __tmp819 CELL 63
+set @counter 807
+read __tmp826 CELL 63
+op add __tmp826 __tmp826 1
+write __tmp826 CELL 63
+sensor __tmp833 CONTAINER @titanium
+set __tmp834 5
+read __tmp835 CELL 63
+op sub __tmp835 __tmp835 1
+write 604 CELL __tmp835
+write __tmp835 CELL 63
+read __tmp841 CELL 63
+op sub __tmp841 __tmp841 1
+write __tmp833 CELL __tmp841
+write __tmp841 CELL 63
+read __tmp847 CELL 63
+op sub __tmp847 __tmp847 1
+write __tmp834 CELL __tmp847
+write __tmp847 CELL 63
+set @counter 807
+read __tmp854 CELL 63
+op add __tmp854 __tmp854 1
+write __tmp854 CELL 63
+sensor __tmp861 CONTAINER @graphite
+set __tmp862 6
+read __tmp863 CELL 63
+op sub __tmp863 __tmp863 1
+write 622 CELL __tmp863
+write __tmp863 CELL 63
+read __tmp869 CELL 63
+op sub __tmp869 __tmp869 1
+write __tmp861 CELL __tmp869
+write __tmp869 CELL 63
+read __tmp875 CELL 63
+op sub __tmp875 __tmp875 1
+write __tmp862 CELL __tmp875
+write __tmp875 CELL 63
+set @counter 807
+read __tmp882 CELL 63
+op add __tmp882 __tmp882 1
+write __tmp882 CELL 63
+sensor __tmp889 CONTAINER @silicon
+set __tmp890 7
+read __tmp891 CELL 63
+op sub __tmp891 __tmp891 1
+write 640 CELL __tmp891
+write __tmp891 CELL 63
+read __tmp897 CELL 63
+op sub __tmp897 __tmp897 1
+write __tmp889 CELL __tmp897
+write __tmp897 CELL 63
+read __tmp903 CELL 63
+op sub __tmp903 __tmp903 1
+write __tmp890 CELL __tmp903
+write __tmp903 CELL 63
+set @counter 807
+read __tmp910 CELL 63
+op add __tmp910 __tmp910 1
+write __tmp910 CELL 63
+sensor __tmp917 CONTAINER @pyratite
+set __tmp918 8
+read __tmp919 CELL 63
+op sub __tmp919 __tmp919 1
+write 658 CELL __tmp919
+write __tmp919 CELL 63
+read __tmp925 CELL 63
+op sub __tmp925 __tmp925 1
+write __tmp917 CELL __tmp925
+write __tmp925 CELL 63
+read __tmp931 CELL 63
+op sub __tmp931 __tmp931 1
+write __tmp918 CELL __tmp931
+write __tmp931 CELL 63
+set @counter 807
+read __tmp938 CELL 63
+op add __tmp938 __tmp938 1
+write __tmp938 CELL 63
+sensor __tmp945 CONTAINER @metaglass
+set __tmp946 9
+read __tmp947 CELL 63
+op sub __tmp947 __tmp947 1
+write 676 CELL __tmp947
+write __tmp947 CELL 63
+read __tmp953 CELL 63
+op sub __tmp953 __tmp953 1
+write __tmp945 CELL __tmp953
+write __tmp953 CELL 63
+read __tmp959 CELL 63
+op sub __tmp959 __tmp959 1
+write __tmp946 CELL __tmp959
+write __tmp959 CELL 63
+set @counter 807
+read __tmp966 CELL 63
+op add __tmp966 __tmp966 1
+write __tmp966 CELL 63
+sensor __tmp973 CONTAINER @blast-compound
+set __tmp974 10
+read __tmp975 CELL 63
+op sub __tmp975 __tmp975 1
+write 694 CELL __tmp975
+write __tmp975 CELL 63
+read __tmp981 CELL 63
+op sub __tmp981 __tmp981 1
+write __tmp973 CELL __tmp981
+write __tmp981 CELL 63
+read __tmp987 CELL 63
+op sub __tmp987 __tmp987 1
+write __tmp974 CELL __tmp987
+write __tmp987 CELL 63
+set @counter 807
+read __tmp994 CELL 63
+op add __tmp994 __tmp994 1
+write __tmp994 CELL 63
+sensor __tmp1001 CONTAINER @spore-pod
+set __tmp1002 11
+read __tmp1003 CELL 63
+op sub __tmp1003 __tmp1003 1
+write 712 CELL __tmp1003
+write __tmp1003 CELL 63
+read __tmp1009 CELL 63
+op sub __tmp1009 __tmp1009 1
+write __tmp1001 CELL __tmp1009
+write __tmp1009 CELL 63
+read __tmp1015 CELL 63
+op sub __tmp1015 __tmp1015 1
+write __tmp1002 CELL __tmp1015
+write __tmp1015 CELL 63
+set @counter 807
+read __tmp1022 CELL 63
+op add __tmp1022 __tmp1022 1
+write __tmp1022 CELL 63
+sensor __tmp1029 CONTAINER @scrap
+set __tmp1030 12
+read __tmp1031 CELL 63
+op sub __tmp1031 __tmp1031 1
+write 730 CELL __tmp1031
+write __tmp1031 CELL 63
+read __tmp1037 CELL 63
+op sub __tmp1037 __tmp1037 1
+write __tmp1029 CELL __tmp1037
+write __tmp1037 CELL 63
+read __tmp1043 CELL 63
+op sub __tmp1043 __tmp1043 1
+write __tmp1030 CELL __tmp1043
+write __tmp1043 CELL 63
+set @counter 807
+read __tmp1050 CELL 63
+op add __tmp1050 __tmp1050 1
+write __tmp1050 CELL 63
+sensor __tmp1057 CONTAINER @plastanium
+set __tmp1058 13
+read __tmp1059 CELL 63
+op sub __tmp1059 __tmp1059 1
+write 748 CELL __tmp1059
+write __tmp1059 CELL 63
+read __tmp1065 CELL 63
+op sub __tmp1065 __tmp1065 1
+write __tmp1057 CELL __tmp1065
+write __tmp1065 CELL 63
+read __tmp1071 CELL 63
+op sub __tmp1071 __tmp1071 1
+write __tmp1058 CELL __tmp1071
+write __tmp1071 CELL 63
+set @counter 807
+read __tmp1078 CELL 63
+op add __tmp1078 __tmp1078 1
+write __tmp1078 CELL 63
+sensor __tmp1085 CONTAINER @thorium
+set __tmp1086 14
+read __tmp1087 CELL 63
+op sub __tmp1087 __tmp1087 1
+write 766 CELL __tmp1087
+write __tmp1087 CELL 63
+read __tmp1093 CELL 63
+op sub __tmp1093 __tmp1093 1
+write __tmp1085 CELL __tmp1093
+write __tmp1093 CELL 63
+read __tmp1099 CELL 63
+op sub __tmp1099 __tmp1099 1
+write __tmp1086 CELL __tmp1099
+write __tmp1099 CELL 63
+set @counter 807
+read __tmp1106 CELL 63
+op add __tmp1106 __tmp1106 1
+write __tmp1106 CELL 63
+sensor __tmp1113 CONTAINER @phase-fabric
+set __tmp1114 15
+read __tmp1115 CELL 63
+op sub __tmp1115 __tmp1115 1
+write 784 CELL __tmp1115
+write __tmp1115 CELL 63
+read __tmp1121 CELL 63
+op sub __tmp1121 __tmp1121 1
+write __tmp1113 CELL __tmp1121
+write __tmp1121 CELL 63
+read __tmp1127 CELL 63
+op sub __tmp1127 __tmp1127 1
+write __tmp1114 CELL __tmp1127
+write __tmp1127 CELL 63
+set @counter 807
+read __tmp1134 CELL 63
+op add __tmp1134 __tmp1134 1
+write __tmp1134 CELL 63
+sensor __tmp1141 CONTAINER @surge-alloy
+set __tmp1142 16
+read __tmp1143 CELL 63
+op sub __tmp1143 __tmp1143 1
+write 802 CELL __tmp1143
+write __tmp1143 CELL 63
+read __tmp1149 CELL 63
+op sub __tmp1149 __tmp1149 1
+write __tmp1141 CELL __tmp1149
+write __tmp1149 CELL 63
+read __tmp1155 CELL 63
+op sub __tmp1155 __tmp1155 1
+write __tmp1142 CELL __tmp1155
+write __tmp1155 CELL 63
+set @counter 807
+read __tmp1162 CELL 63
+op add __tmp1162 __tmp1162 1
+write __tmp1162 CELL 63
+jump 516 always 0 0
+end
+read __tmp1170 CELL 63
+read __tmp1169 CELL __tmp1170
+op add __tmp1170 __tmp1170 1
+write __tmp1170 CELL 63
+set slot __tmp1169
+read __tmp1178 CELL 63
+read __tmp1177 CELL __tmp1178
+op add __tmp1178 __tmp1178 1
+write __tmp1178 CELL 63
+set count __tmp1177
+op lessThan runFull count CAP
+op mul __tmp1187 CAP 0.8
+op lessThan __tmp1188 count __tmp1187
+set run80 __tmp1188
+write count CELL slot
+op add __tmp1190 slot 16
+write runFull CELL __tmp1190
+op add __tmp1192 slot 32
+write run80 CELL __tmp1192
+op sub _slot0 slot 1
+read __tmp1195 CELL 63
+op sub __tmp1195 __tmp1195 1
+write 836 CELL __tmp1195
+write __tmp1195 CELL 63
+read __tmp1201 CELL 63
+op sub __tmp1201 __tmp1201 1
+write slot CELL __tmp1201
+write __tmp1201 CELL 63
+set @counter 928
+read __tmp1208 CELL 63
+read __tmp1207 CELL __tmp1208
+op add __tmp1208 __tmp1208 1
+write __tmp1208 CELL 63
+op sub _left __tmp1207 5
+jump 844 greaterThanEq _slot0 8
+set __tmp1219 10
+jump 845 always 0 0
+set __tmp1219 50
+set _bottom __tmp1219
+set __tmp1222 0
+set __tmp1223 0
+set __tmp1224 0
+set __tmp1225 255
+draw color __tmp1222 __tmp1223 __tmp1224 __tmp1225 0 0
+set __tmp1226 10
+set __tmp1227 30
+draw rect _left _bottom __tmp1226 __tmp1227 0 0
+drawflush display1
+jump 875 notEqual run80 true
+jump 866 notEqual count 0
+set __tmp1232 255
+set __tmp1233 100
+set __tmp1234 100
+set __tmp1235 255
+draw color __tmp1232 __tmp1233 __tmp1234 __tmp1235 0 0
+set __tmp1236 10
+set __tmp1237 2
+draw rect _left _bottom __tmp1236 __tmp1237 0 0
+jump 874 always 0 0
+set __tmp1238 255
+set __tmp1239 200
+set __tmp1240 100
+set __tmp1241 255
+draw color __tmp1238 __tmp1239 __tmp1240 __tmp1241 0 0
+set __tmp1242 10
+set __tmp1243 5
+draw rect _left _bottom __tmp1242 __tmp1243 0 0
+jump 893 always 0 0
+jump 885 notEqual count CAP
+set __tmp1246 100
+set __tmp1247 255
+set __tmp1248 100
+set __tmp1249 255
+draw color __tmp1246 __tmp1247 __tmp1248 __tmp1249 0 0
+set __tmp1250 10
+set __tmp1251 30
+draw rect _left _bottom __tmp1250 __tmp1251 0 0
+jump 893 always 0 0
+set __tmp1252 255
+set __tmp1253 255
+set __tmp1254 100
+set __tmp1255 255
+draw color __tmp1252 __tmp1253 __tmp1254 __tmp1255 0 0
+set __tmp1256 10
+set __tmp1257 25
+draw rect _left _bottom __tmp1256 __tmp1257 0 0
+drawflush display1
+set __tmp1258 255
+set __tmp1259 255
+set __tmp1260 255
+set __tmp1261 255
+draw color __tmp1258 __tmp1259 __tmp1260 __tmp1261 0 0
+read __tmp1263 CELL 63
+read __tmp1262 CELL __tmp1263
+op add __tmp1263 __tmp1263 1
+write __tmp1263 CELL 63
+read __tmp1270 CELL 63
+op sub __tmp1270 __tmp1270 1
+write null CELL __tmp1270
+write __tmp1270 CELL 63
+set @counter __tmp1262
+end
+read __tmp1277 CELL 63
+read __tmp1276 CELL __tmp1277
+op add __tmp1277 __tmp1277 1
+write __tmp1277 CELL 63
+set slot __tmp1276
+jump 917 lessThanEq slot 8
+set __tmp1286 45
+jump 918 always 0 0
+set __tmp1286 5
+read __tmp1290 CELL 63
+read __tmp1289 CELL __tmp1290
+op add __tmp1290 __tmp1290 1
+write __tmp1290 CELL 63
+read __tmp1297 CELL 63
+op sub __tmp1297 __tmp1297 1
+write __tmp1286 CELL __tmp1297
+write __tmp1297 CELL 63
+set @counter __tmp1289
+end
+read __tmp1304 CELL 63
+read __tmp1303 CELL __tmp1304
+op add __tmp1304 __tmp1304 1
+write __tmp1304 CELL 63
+set slot __tmp1303
+op sub slot0 slot 1
+op mod slotMod slot0 8
+op mul left slotMod 10
+op add __tmp1318 left 5
+read __tmp1320 CELL 63
+read __tmp1319 CELL __tmp1320
+op add __tmp1320 __tmp1320 1
+write __tmp1320 CELL 63
+read __tmp1327 CELL 63
+op sub __tmp1327 __tmp1327 1
+write __tmp1318 CELL __tmp1327
+write __tmp1327 CELL 63
+set @counter __tmp1319
+end

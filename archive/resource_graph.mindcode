@@ -1,0 +1,111 @@
+CONTAINER = foundation1
+CELL = cell1
+MSG = message1
+CAP = CONTAINER.sensor(@itemCapacity)
+CAP80 = CAP * 0.8
+
+allocate stack in CELL[49..63]
+
+def slotx(slot)
+  slot0 = slot - 1
+  slotMod = slot0 % 8
+  left = slotMod * 10
+  return left + 5
+end
+
+
+def sloty(slot)
+  if slot > 8
+    return 45
+  else
+    return 5
+  end
+end
+
+def drawResource(count, slot)
+  runFull = count < CAP
+  run80 = count < (CAP * 0.8)
+  CELL[slot] = count
+  CELL[slot + 16] = runFull
+  CELL[slot + 32] = run80
+  _slot0 = slot - 1
+  _left = slotx(slot) - 5
+  
+  _bottom = (_slot0 < 8) ? 10 : 50
+  
+  color(0, 0, 0, 255)
+  rect(_left, _bottom, 10, 30)
+  drawflush(display1)
+  
+  height = count / CAP * 25 + 5
+   
+  if run80
+    if count == 0
+      color(255, 100, 100, 255)
+    else
+      color(255, 200, 100, 255)
+    end
+  else
+    if count == CAP
+      color(100, 100, 255, 255)
+    else
+      color(255, 255, 100, 255)
+    end
+  end
+  
+  rect(_left, _bottom, 10, height)
+  drawflush(display1)
+  color(255, 255, 255, 255)
+end
+
+// Setup
+print("Current flag status\n")
+print("Flags are at MAX and 80% (P80)\n")
+print("------------------------------\n")
+print("Blue - Full, MAX and P80 off\n")
+print("Yellow - MAX off, P80 on\n")
+print("Orange - Have some, MAX and P80 on\n")
+print("Red - None present, MAX and P80 on")
+printflush(MSG)
+color(200, 200, 200, 255)
+clear(0, 0, 0)
+drawflush(display1)
+rect(0, 0, 80, 10)
+rect(0, 40, 80, 10)
+image(slotx(1), sloty(1), @copper, 10, 0)
+image(slotx(2), sloty(2), @lead, 10, 0)
+image(slotx(3), sloty(3), @sand, 10, 0)
+image(slotx(4), sloty(4), @coal, 10, 0)
+image(slotx(5), sloty(5), @titanium, 10, 0)
+image(slotx(6), sloty(6), @graphite, 10, 0)
+image(slotx(7), sloty(7), @silicon, 10, 0)
+image(slotx(8), sloty(8), @metaglass, 10, 0)
+image(slotx(9), sloty(9), @pyratite, 10, 0)
+image(slotx(10), sloty(10), @blast-compound, 10, 0)
+image(slotx(11), sloty(11), @spore-pod, 10, 0)
+image(slotx(12), sloty(12), @scrap, 10, 0)
+image(slotx(13), sloty(13), @plastanium, 10, 0)
+image(slotx(14), sloty(14), @thorium, 10, 0)
+image(slotx(15), sloty(15), @phase-fabric, 10, 0)
+image(slotx(16), sloty(16), @surge-alloy, 10, 0)
+drawflush(display1)
+
+// Only need to loop over resources themselves
+while true
+  drawResource( CONTAINER.sensor(@copper), 1)
+  drawResource( CONTAINER.sensor(@lead), 2)
+  drawResource( CONTAINER.sensor(@sand), 3)
+  drawResource( CONTAINER.sensor(@coal), 4)
+  drawResource( CONTAINER.sensor(@titanium), 5)
+  drawResource( CONTAINER.sensor(@graphite), 6)
+  drawResource( CONTAINER.sensor(@silicon), 7)
+  drawResource( CONTAINER.sensor(@pyratite), 8)
+  drawResource( CONTAINER.sensor(@metaglass), 9)
+  drawResource( CONTAINER.sensor(@blast-compound), 10)
+  drawResource( CONTAINER.sensor(@spore-pod), 11)
+  drawResource( CONTAINER.sensor(@scrap), 12)
+  drawResource( CONTAINER.sensor(@plastanium), 13)
+  drawResource( CONTAINER.sensor(@thorium), 14)
+  drawResource( CONTAINER.sensor(@phase-fabric), 15)
+  drawResource( CONTAINER.sensor(@surge-alloy), 16)
+end

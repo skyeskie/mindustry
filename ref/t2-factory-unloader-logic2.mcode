@@ -1,0 +1,105 @@
+sensor unit factory1 @config
+sensor coreL nucleus1 @lead
+sensor coreS nucleus1 @silicon
+sensor coreG nucleus1 @graphite
+sensor coreC nucleus1 @coal
+sensor coreT nucleus1 @titanium
+sensor coreM nucleus1 @metaglass
+sensor coreP nucleus1 @phase-fabric
+set enoughL true
+set enoughS true
+set enoughG true
+set enoughC true
+set enoughT true
+set enoughM true
+set enoughRes true
+set enoughP true
+jump 20 notEqual unit @nova
+jump 20 greaterThan coreT 1000
+set enoughT false
+set enoughRes false
+jump 24 notEqual unit @risso
+jump 24 greaterThan coreM 1000
+set enoughM false
+set enoughRes false
+jump 28 notEqual unit @crawler
+jump 28 greaterThan coreC 1000
+set enoughC false
+set enoughRes false
+jump 34 equal unit @flare
+jump 34 equal unit @crawler
+jump 34 equal unit @risso
+jump 34 greaterThan coreL 1000
+set enoughL false
+set enoughRes false
+jump 37 greaterThan coreS 1000
+set enoughS false
+set enoughRes false
+jump 40 greaterThan coreG 1000
+set enoughG false
+set enoughRes false
+jump 42 greaterThan coreP 1000
+set enoughP false
+jump 45 notEqual enoughS true
+print "[green]Silicon > 1000"
+jump 46 always x false
+print "[red]Silicon < 1000"
+print "\n"
+jump 55 equal unit @risso
+jump 55 equal unit @crawler
+jump 55 equal unit @flare
+jump 53 notEqual enoughL true
+print "[green]Lead > 1000"
+jump 54 always x false
+print "[red]Lead < 1000"
+print "\n"
+jump 61 notEqual unit @risso
+jump 59 notEqual enoughM true
+print "[green]Metaglass > 1000"
+jump 60 always x false
+print "[red]Metaglass < 1000"
+print "\n"
+jump 67 notEqual unit @crawler
+jump 65 notEqual enoughC true
+print "[green]Coal > 1000"
+jump 66 always x false
+print "[red]Coal < 1000"
+print "\n"
+jump 73 notEqual unit @nova
+jump 71 notEqual enoughT true
+print "[green]Titanium > 1000"
+jump 72 always x false
+print "[red]Titanium < 1000"
+print "\n"
+jump 76 notEqual enoughG true
+print "[green]Graphite > 1000"
+jump 77 always x false
+print "[red]Graphite < 1000"
+print "\n"
+jump 81 notEqual enoughP true
+print "[green]Phase: On"
+jump 82 always x false
+print "[red]Phase: Off"
+print "\n"
+print "[white]Made by [purple]~Amy~"
+printflush message1
+jump 89 equal enoughRes true
+control enabled unloader1 0 0 0 0
+control enabled unloader2 0 0 0 0
+end
+sensor t2silicon reconstructor1 @silicon
+sensor t2graphite reconstructor1 @graphite
+sensor odPhase projector1 @phase-fabric
+jump 96 equal enoughP false
+jump 96 greaterThan odPhase 1
+control config unloader1 @phase-fabric 0 0 0
+jump 101 always x false
+jump 99 greaterThan t2silicon 40
+control config unloader1 @silicon 0 0 0
+jump 101 always x false
+jump 103 greaterThan t2graphite 40
+control config unloader1 @graphite 0 0 0
+control enabled unloader1 true 0 0 0
+jump 104 always x false
+control enabled unloader1 false 0 0 0
+end
