@@ -1,0 +1,3 @@
+[submodule "mindcode"]
+	path = mindcode
+	url = https://github.com/skyeskie/mindcode.git
