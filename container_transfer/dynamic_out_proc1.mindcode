@@ -1,0 +1,102 @@
+// Remote core sensor
+
+if(CORE === null)
+  CONTAINER = container1
+  CONVEY_SPEED = 11
+  // Copper: 4/s
+  // Titanium: 11/s
+  // ?? for faster
+
+  while(@unit === null)
+    print("Binding unit")
+    printflush(message1)
+    ubind(@flare)
+  end
+
+  print("Init variables")
+  while(found != true)
+    print("Finding core")
+    printflush(message1)
+    found = ulocate(building, core, false, CoreX, CoreY, CORE)
+  end
+  
+  CAP = CORE.itemCapacity
+  
+  deltaX = CONTAINER.x - CoreX
+  deltaY = CONTAINER.y - CoreY
+  rectDist = abs(deltaX) + abs(deltaY)
+  
+  // Go ahead and decrease 10% since this is an estimate
+  transitCapacity = rectDist * CONVEY_SPEED * 0.9
+  
+  AdjCAP = CAP - transitCapacity
+  Target = CONTAINER.itemCapacity \ 2
+end
+
+OutCtr = 0
+
+//Could get 4 lowest
+
+for i=0; i<16 && OutCtr < 4; i+=1
+  res = case i
+  when 0
+    @copper
+  when 1
+    @lead
+  when 2
+    @sand
+  when 3
+    @coal
+  when 4
+    @scrap
+  when 5
+    @spore-pod
+  when 6
+    @titanium
+  when 7
+    @thorium
+  when 8
+    @graphite
+  when 9
+    @silicon
+  when 10
+    @metaglass
+  when 11
+    @pyratite
+  when 12
+    @blast-compound
+  when 13
+    @plastanium
+  when 14
+    @phase-fabric
+  when 15
+    @surge-alloy
+  end
+  
+  ResCore = CORE.sensor(res)
+  ResCont = CONTAINER.sensor(res)
+  if(ResCore < AdjCAP && ResCont > Target)
+    print("Out: ", res, " ( ", ResCont, " | ", ResCore, ")\n")
+    OutCtr += 1
+    case OutCtr
+    when 1
+      unloader1.config = res
+      unloader2.config = res
+      unloader3.config = res
+      unloader4.config = res
+    when 2
+      unloader2.config = res
+    when 3
+      unloader3.config = res
+    when 4
+      unloader4.config = res
+    end
+  end
+end
+
+print("\n\nCORE: ", CORE)
+print("\nAdjCap: ", AdjCAP)
+print("\nTarget: ", Target)
+print("\nMatOut: ", OutCtr)
+print("\nRun?: ", run)
+printflush(message1)

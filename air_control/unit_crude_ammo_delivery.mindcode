@@ -1,5 +1,5 @@
 if(STATE === null || STATE < 0 || STATE > 4)
-  FLAG = @x * 10000 + @y
+  FLAG = @thisx * 10000 + @thisy
 
   CONTAINER = foundation1
   Cx = CONTAINER.x
@@ -15,15 +15,22 @@ if(STATE === null || STATE < 0 || STATE > 4)
   tryDrop = 0
 end
 
-while @unit === null
+while STATE == 0
   ubind(@flare)
-  flag(FLAG)
-  STATE = 1
+  if @unit === null
+    ubind(@flare)
+  else
+    if @unit.flag < 1
+      flag(FLAG)
+      found = ulocate(building, core, false, Cx, Cy, CONTAINER)
+      STATE = 1
+    end
+  end
 end
 
 while true
   print("Driving: ", @unit, " # ", @unit.flag, "\n")
-  print("  at (", @unit.x, ", ", @unit.y, ")\n")
+  print("  at (", floor(@unit.x), ", ", floor(@unit.y), ")\n")
 
   if( @unit.totalItems == 0 )
     print("-> State resupply\n")

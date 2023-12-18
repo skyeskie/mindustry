@@ -1,0 +1,50 @@
+_mask = case _mat
+when @copper
+  print("@copper")
+  1 << 0
+when @lead
+  print("@lead")
+  1 << 1
+when @sand
+  print("@sand")
+  1 << 2
+when @coal
+  print("@coal")
+  1 << 3
+when @scrap
+  print("@scrap")
+  1 << 4
+when @spore-pod
+  print("@spore-pod")
+  1 << 5
+when @titanium
+  print("@titanium")
+  1 << 6
+when @thorium
+  print("@thorium")
+  1 << 7
+when @graphite
+  print("@graphite")
+  1 << 8
+when @silicon
+  print("@silicon")
+  1 << 9
+when @metaglass
+  print("@metaglass")
+  1 << 10
+when @pyratite
+  print("@pyratite")
+  1 << 11
+when @blast-compound
+  print("@blast-compound")
+  1 << 12
+when @plastanium
+  print("@plastanium")
+  1 << 13
+when @phase-fabric
+  print("@phase-fabric")
+  1 << 14
+when @surge-alloy
+  print("@surge-alloy")
+  1 << 15
+end 

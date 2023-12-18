@@ -1,0 +1,96 @@
+// Setup
+if SETUP != 1
+  SETUP = 1
+  CONTAINER = nucleus1
+  // Define config values
+end
+
+// Sensor section 1
+pow = node1.powerNetIn - node1.powerNetOut
+
+if pow < 0
+  // Disable all factories
+  weaver1.enabled = false // Phase Fabric
+  weaver2.enabled = false // Phase Fabric
+  kiln1.enabled = false // Metaglass
+  mixer1.enabled = false //Pyratite
+  crucible1.enabled = false // Silicon
+  smelter1.enabled = false // Surge Alloy
+  press1.enabled = false // Graphite
+  cultivator9.enabled = false // Spore Pod
+  // Blast Compound
+  mixer2.enabled = false //Pyratite
+  mixer3.enabled = false
+  cultivator6.enabled = false
+  cultivator7.enabled = false
+  cultivator8.enabled = false
+  // Plastinium
+  compressor1.enabled = false
+  press2.enabled = false
+  cultivator1.enabled = false
+  cultivator2.enabled = false
+  cultivator3.enabled = false
+  cultivator4.enabled = false
+  cultivator5.enabled = false
+else
+  // Sensor section 2
+  copp = CONTAINER.copper
+  lead = CONTAINER.lead
+  sand = CONTAINER.sand
+  coal = CONTAINER.coal
+  scrp = CONTAINER.scrap
+  spor = CONTAINER.spore-pod
+  titn = CONTAINER.titanium
+  thor = CONTAINER.thorium
+  grph = CONTAINER.graphite
+  silc = CONTAINER.silicon
+  mgls = CONTAINER.metaglass
+  pyra = CONTAINER.pyratite
+  blst = CONTAINER.blast-compound
+  plas = CONTAINER.plastanium
+  pfab = CONTAINER.phase-fabric
+  srge = CONTAINER.surge-alloy
+
+  // Minimums
+  mSandThor = min(sand, thor)
+  mSandLead = min(sand, lead)
+  mSLCoal = min(mSandLead, coal)
+  mSandCoal = min(sand, coal)
+  mSCPyra = min(mSandCoal, pyra)
+  mCoppLead = min(copp, lead)
+  mTitnSilc = min(titn, silc)
+  mCLTS = min(mCoppLead, mTitnSilc)
+
+  thrSand = sand > 1000
+
+  runWeave = thrSand && (mSandThor > pfab)
+  weaver1.enabled = runWeave
+  weaver2.enabled = runWeave
+
+  kiln1.enabled = mSandLead > mgls
+
+  //Pyratite
+  mixer1.enabled = mSLCoal > pyra
+
+  runBlast = mSLCoal > blst
+  mixer2.enabled = runBlast
+  mixer3.enabled = runBlast
+  cultivator6.enabled = runBlast
+  cultivator7.enabled = runBlast
+  cultivator8.enabled = runBlast
+
+  press1.enabled = coal > grph
+
+  crucible1.enabled = mSCPyra > silc
+
+  //TODO: Smelter and Plas both high power, so disable first
+  smelter1.enabled = mCLTS > srge
+  runPlas = titn > plas
+  compressor1.enabled = runPlas
+  press2.enabled = runPlas
+  cultivator1.enabled = runPlas
+  cultivator2.enabled = runPlas
+  cultivator3.enabled = runPlas
+  cultivator4.enabled = runPlas
+  cultivator5.enabled = runPlas
+end

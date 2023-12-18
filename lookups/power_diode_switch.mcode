@@ -1,0 +1,14 @@
+sensor stored battery1 @powerNetStored
+sensor powerin battery1 @powerNetIn
+sensor powerout battery1 @powerNetOut
+set set 50
+op sub powernet powerin powerout
+op sub limit power set
+jump 10 lessThanEq limit 0
+control enabled diode1 1 0 0 0
+control enabled diode2 0 0 0 0
+jump 12 always limit 0
+control enabled diode2 1 0 0 0
+control enabled diode1 0 0 0 0
+end
+ 

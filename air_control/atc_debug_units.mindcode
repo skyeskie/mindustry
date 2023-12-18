@@ -1,0 +1,25 @@
+UNIT_TYPE = @flare
+
+if( ITR == null )
+  ITR = 0
+end
+
+ubind(UNIT_TYPE)
+
+if(@unit != null)
+  ctl = @unit.controller
+  print(@unit, " # ", @unit.flag)
+  print("\n   (", @unit.x \ 1, ",", @unit.y \ 1, ")\n")
+  if( ctl == @unit )
+    print("Self-controlled\n")
+  else
+    print("ctl: ", ctl, " (", ctl.x \ 1, ", ", ctl.y \ 1, ")\n")
+  end
+end
+
+ITR += 1
+
+if( ITR == 4 )
+  printflush(message1)
+  ITR = 0
+end

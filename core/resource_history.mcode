@@ -1,0 +1,567 @@
+set CELL bank1
+jump 139 equal SETUP 1
+set CONTAINER nucleus1
+set POW_LINK battery1
+set DISPLAY display1
+set DISPLAY_CFG sorter1
+set Z 0
+set ONE 1
+set IMG_SIZE 10
+set IMG_Y 5
+set GAUGE_BOTTOM 12
+set DISP_SIZE 176
+set DISP_MID 88
+set FF 255
+set GREY_DARK 80
+set GREY_MID 127
+set GREY_LIGHT 200
+set POWER_METER_LEFT 170
+set POWER_METER_WIDTH 6
+set MAIN_GRAPH_BOTTOM 46
+op add GUIDE_01K MAIN_GRAPH_BOTTOM 31
+op add GUIDE_02K MAIN_GRAPH_BOTTOM 43
+op add GUIDE_03K MAIN_GRAPH_BOTTOM 53
+op add GUIDE_04K MAIN_GRAPH_BOTTOM 62
+op add GUIDE_05K MAIN_GRAPH_BOTTOM 69
+op add GUIDE_06K MAIN_GRAPH_BOTTOM 76
+op add GUIDE_07K MAIN_GRAPH_BOTTOM 82
+op add GUIDE_08K MAIN_GRAPH_BOTTOM 87
+op add GUIDE_09K MAIN_GRAPH_BOTTOM 93
+op add GUIDE_10K MAIN_GRAPH_BOTTOM 98
+op add GUIDE_11K MAIN_GRAPH_BOTTOM 102
+op add GUIDE_12K MAIN_GRAPH_BOTTOM 107
+op add GUIDE_13K MAIN_GRAPH_BOTTOM 111
+op add GUIDE_14K MAIN_GRAPH_BOTTOM 116
+op add GUIDE_15K MAIN_GRAPH_BOTTOM 120
+op add GUIDE_16K MAIN_GRAPH_BOTTOM 124
+set MAIN_GRAPH_HEIGHT 128
+set MAIN_GRAPH_RIGHT 170
+op add GUIDE_POW_n7k MAIN_GRAPH_BOTTOM 2
+op add GUIDE_POW_n4k MAIN_GRAPH_BOTTOM 6
+op add GUIDE_POW_n1k MAIN_GRAPH_BOTTOM 16
+op add GUIDE_POW_n700 MAIN_GRAPH_BOTTOM 18
+op add GUIDE_POW_n400 MAIN_GRAPH_BOTTOM 22
+op add GUIDE_POW_n100 MAIN_GRAPH_BOTTOM 32
+op add GUIDE_POW_n70 MAIN_GRAPH_BOTTOM 34
+op add GUIDE_POW_n40 MAIN_GRAPH_BOTTOM 38
+op add GUIDE_POW_n10 MAIN_GRAPH_BOTTOM 48
+op add GUIDE_POW_n7 MAIN_GRAPH_BOTTOM 50
+op add GUIDE_POW_n4 MAIN_GRAPH_BOTTOM 54
+op add GUIDE_POW_MID MAIN_GRAPH_BOTTOM 64
+op add GUIDE_POW_p4 MAIN_GRAPH_BOTTOM 74
+op add GUIDE_POW_p7 MAIN_GRAPH_BOTTOM 78
+op add GUIDE_POW_p10 MAIN_GRAPH_BOTTOM 80
+op add GUIDE_POW_p40 MAIN_GRAPH_BOTTOM 90
+op add GUIDE_POW_p70 MAIN_GRAPH_BOTTOM 94
+op add GUIDE_POW_p100 MAIN_GRAPH_BOTTOM 96
+op add GUIDE_POW_p400 MAIN_GRAPH_BOTTOM 106
+op add GUIDE_POW_p700 MAIN_GRAPH_BOTTOM 110
+op add GUIDE_POW_p1k MAIN_GRAPH_BOTTOM 112
+op add GUIDE_POW_p4k MAIN_GRAPH_BOTTOM 122
+op add GUIDE_POW_p7k MAIN_GRAPH_BOTTOM 126
+set __tmp97 64
+op log10 __tmp99 10000 0
+op div __tmp100 __tmp97 __tmp99
+set POW_HEIGHT_FACT __tmp100
+sensor CAP nucleus1 @itemCapacity
+op sqrt __tmp102 CAP 0
+op div __tmp103 __tmp102 MAIN_GRAPH_HEIGHT
+set capHeightDiv __tmp103
+set DISP_SCAN_POS 0
+write 1 CELL 21
+write 0 CELL 22
+set MASK 0x7
+set SHIFT 0
+set J 80
+set I 70
+jump 84 greaterThanEq I 79
+write SHIFT CELL I
+write MASK CELL J
+op shl MASK MASK 7
+op add SHIFT SHIFT 7
+op add J J 1
+op add I I 1
+jump 76 always 0 0
+set Z 0
+draw clear DISPLAY Z Z 0 0 0
+draw color GREY_DARK GREY_DARK GREY_DARK FF 0 0
+draw rect Z MAIN_GRAPH_BOTTOM DISP_SIZE MAIN_GRAPH_HEIGHT 0 0
+draw rect Z Z DISP_SIZE IMG_SIZE 0 0
+set __tmp124 12
+set __tmp125 32
+draw rect Z __tmp124 DISP_SIZE __tmp125 0 0
+draw color GREY_LIGHT GREY_LIGHT GREY_LIGHT FF 0 0
+set __tmp126 44
+set __tmp127 2
+draw rect Z __tmp126 DISP_SIZE __tmp127 0 0
+set __tmp128 2
+draw rect Z IMG_SIZE DISP_SIZE __tmp128 0 0
+set __tmp129 174
+set __tmp130 2
+draw rect Z __tmp129 DISP_SIZE __tmp130 0 0
+draw color FF FF FF FF 0 0
+set IMG_X 5
+draw image IMG_X IMG_Y @copper IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @lead IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @sand IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @coal IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @scrap IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @spore-pod IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @titanium IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @thorium IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @graphite IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @silicon IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @metaglass IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @pyratite IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @blast-compound IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @plastanium IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @phase-fabric IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @surge-alloy IMG_SIZE Z 0
+op add IMG_X IMG_X IMG_SIZE
+draw image IMG_X IMG_Y @battery IMG_SIZE Z 0
+drawflush DISPLAY
+set SETUP 1
+jump 566 always 0 0
+draw color Z Z Z FF 0 0
+set __tmp149 46
+set __tmp150 128
+draw rect DISP_SCAN_POS __tmp149 ONE __tmp150 0 0
+drawflush DISPLAY
+sensor powGen POW_LINK @powerNetIn
+write powGen CELL 0
+sensor powUse POW_LINK @powerNetOut
+write powUse CELL 1
+sensor powStore POW_LINK @powerNetStored
+write powStore CELL 2
+sensor capStore POW_LINK @powerNetCapacity
+write capStore CELL 3
+sensor copper CONTAINER @copper
+write copper CELL 4
+sensor lead CONTAINER @lead
+write lead CELL 5
+sensor sand CONTAINER @sand
+write sand CELL 6
+sensor coal CONTAINER @coal
+write coal CELL 7
+sensor scrap CONTAINER @scrap
+write scrap CELL 8
+sensor spore CONTAINER @spore-pod
+write spore CELL 9
+sensor titan CONTAINER @titanium
+write titan CELL 10
+sensor thor CONTAINER @thorium
+write thor CELL 11
+sensor graph CONTAINER @graphite
+write graph CELL 12
+sensor silic CONTAINER @silicon
+write silic CELL 13
+sensor glass CONTAINER @metaglass
+write glass CELL 14
+sensor pyra CONTAINER @pyratite
+write pyra CELL 15
+sensor blast CONTAINER @blast-compound
+write blast CELL 16
+sensor plast CONTAINER @plastanium
+write plast CELL 17
+sensor phase CONTAINER @phase-fabric
+write phase CELL 18
+sensor surge CONTAINER @surge-alloy
+write surge CELL 19
+op sqrt __tmp191 copper 0
+op idiv __tmp192 __tmp191 capHeightDiv
+set hCopper __tmp192
+op sqrt __tmp193 lead 0
+op idiv __tmp194 __tmp193 capHeightDiv
+set hLead __tmp194
+op sqrt __tmp195 sand 0
+op idiv __tmp196 __tmp195 capHeightDiv
+set hSand __tmp196
+op sqrt __tmp197 coal 0
+op idiv __tmp198 __tmp197 capHeightDiv
+set hCoal __tmp198
+op sqrt __tmp199 scrap 0
+op idiv __tmp200 __tmp199 capHeightDiv
+set hScrap __tmp200
+op sqrt __tmp201 spore 0
+op idiv __tmp202 __tmp201 capHeightDiv
+set hSpore __tmp202
+op sqrt __tmp203 titan 0
+op idiv __tmp204 __tmp203 capHeightDiv
+set hTitan __tmp204
+op sqrt __tmp205 thor 0
+op idiv __tmp206 __tmp205 capHeightDiv
+set hThor __tmp206
+op sqrt __tmp207 graph 0
+op idiv __tmp208 __tmp207 capHeightDiv
+set hGraph __tmp208
+op sqrt __tmp209 silic 0
+op idiv __tmp210 __tmp209 capHeightDiv
+set hSilic __tmp210
+op sqrt __tmp211 glass 0
+op idiv __tmp212 __tmp211 capHeightDiv
+set hGlass __tmp212
+op sqrt __tmp213 pyra 0
+op idiv __tmp214 __tmp213 capHeightDiv
+set hPyra __tmp214
+op sqrt __tmp215 blast 0
+op idiv __tmp216 __tmp215 capHeightDiv
+set hBlast __tmp216
+op sqrt __tmp217 plast 0
+op idiv __tmp218 __tmp217 capHeightDiv
+set hPlast __tmp218
+op sqrt __tmp219 phase 0
+op idiv __tmp220 __tmp219 capHeightDiv
+set hPhase __tmp220
+op sqrt __tmp221 surge 0
+op idiv __tmp222 __tmp221 capHeightDiv
+set hSurge __tmp222
+op sqrt __tmp223 powStore 0
+op mul __tmp224 __tmp223 MAIN_GRAPH_HEIGHT
+op sqrt __tmp225 capStore 0
+op idiv __tmp226 __tmp224 __tmp225
+set hBatt __tmp226
+op sub netPow powGen powUse
+op abs __tmp228 netPow 0
+op mul powMax __tmp228 1.1
+read __tmp232 CELL 21
+jump 248 lessThan powMax __tmp232
+write 0 CELL 20
+read __tmp238 CELL 21
+jump 247 lessThanEq powMax __tmp238
+write powMax CELL 21
+jump 247 always 0 0
+jump 257 always 0 0
+read __tmp243 CELL 20
+jump 253 lessThanEq __tmp243 DISP_SIZE
+write 0 CELL 20
+write powMax CELL 21
+jump 257 always 0 0
+read __tmp250 CELL 20
+op add __tmp252 __tmp250 1
+write __tmp252 CELL 20
+read powMax CELL 21
+jump 260 notEqual netPow 0
+set __tmp258 64
+jump 269 always 0 0
+op abs absNetPow netPow 0
+op div powSign netPow absNetPow
+op log10 __tmp262 absNetPow 0
+op mul __tmp263 __tmp262 POW_HEIGHT_FACT
+set hPowBar __tmp263
+set __tmp264 64
+op mul __tmp265 powSign hPowBar
+op add __tmp266 __tmp264 __tmp265
+set __tmp258 __tmp266
+set hPow __tmp258
+set LEFT Z
+draw color GREY_DARK GREY_DARK GREY_DARK FF 0 0
+set __tmp267 32
+draw rect LEFT GAUGE_BOTTOM DISP_SIZE __tmp267 0 0
+op sub __tmp268 FF hCopper
+op add __tmp269 GREY_MID hCopper
+draw color __tmp268 __tmp269 GREY_MID FF 0 0
+op idiv __tmp271 hCopper 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp271 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp273 FF hLead
+op add __tmp274 GREY_MID hLead
+draw color __tmp273 __tmp274 GREY_MID FF 0 0
+op idiv __tmp276 hLead 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp276 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp278 FF hSand
+op add __tmp279 GREY_MID hSand
+draw color __tmp278 __tmp279 GREY_MID FF 0 0
+op idiv __tmp281 hSand 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp281 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp283 FF hCoal
+op add __tmp284 GREY_MID hCoal
+draw color __tmp283 __tmp284 GREY_MID FF 0 0
+op idiv __tmp286 hCoal 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp286 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp288 FF hScrap
+op add __tmp289 GREY_MID hScrap
+draw color __tmp288 __tmp289 GREY_MID FF 0 0
+op idiv __tmp291 hScrap 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp291 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp293 FF hSpore
+op add __tmp294 GREY_MID hSpore
+draw color __tmp293 __tmp294 GREY_MID FF 0 0
+op idiv __tmp296 hSpore 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp296 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp298 FF hTitan
+op add __tmp299 GREY_MID hTitan
+draw color __tmp298 __tmp299 GREY_MID FF 0 0
+op idiv __tmp301 hTitan 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp301 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp303 FF hThor
+op add __tmp304 GREY_MID hThor
+draw color __tmp303 __tmp304 GREY_MID FF 0 0
+op idiv __tmp306 hThor 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp306 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp308 FF hGraph
+op add __tmp309 GREY_MID hGraph
+draw color __tmp308 __tmp309 GREY_MID FF 0 0
+op idiv __tmp311 hGraph 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp311 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp313 FF hSilic
+op add __tmp314 GREY_MID hSilic
+draw color __tmp313 __tmp314 GREY_MID FF 0 0
+op idiv __tmp316 hSilic 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp316 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp318 FF hGlass
+op add __tmp319 GREY_MID hGlass
+draw color __tmp318 __tmp319 GREY_MID FF 0 0
+op idiv __tmp321 hGlass 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp321 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp323 FF hPyra
+op add __tmp324 GREY_MID hPyra
+draw color __tmp323 __tmp324 GREY_MID FF 0 0
+op idiv __tmp326 hPyra 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp326 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp328 FF hBlast
+op add __tmp329 GREY_MID hBlast
+draw color __tmp328 __tmp329 GREY_MID FF 0 0
+op idiv __tmp331 hBlast 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp331 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp333 FF hPlast
+op add __tmp334 GREY_MID hPlast
+draw color __tmp333 __tmp334 GREY_MID FF 0 0
+op idiv __tmp336 hPlast 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp336 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp338 FF hPhase
+op add __tmp339 GREY_MID hPhase
+draw color __tmp338 __tmp339 GREY_MID FF 0 0
+op idiv __tmp341 hPhase 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp341 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp343 FF hSurge
+op add __tmp344 GREY_MID hSurge
+draw color __tmp343 __tmp344 GREY_MID FF 0 0
+op idiv __tmp346 hSurge 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp346 0 0
+op add LEFT LEFT IMG_SIZE
+op sub __tmp348 FF hBatt
+op add __tmp349 GREY_MID hBatt
+draw color __tmp348 __tmp349 GREY_MID FF 0 0
+op idiv __tmp351 hBatt 4
+draw rect LEFT GAUGE_BOTTOM IMG_SIZE __tmp351 0 0
+drawflush DISPLAY
+draw color Z Z Z FF 0 0
+draw rect POWER_METER_LEFT GAUGE_BOTTOM POWER_METER_WIDTH DISP_SIZE 0 0
+jump 383 greaterThanEq hPow DISP_MID
+draw color FF Z Z FF 0 0
+op sub __tmp354 DISP_MID hPow
+draw rect POWER_METER_LEFT hPow POWER_METER_WIDTH __tmp354 0 0
+jump 388 always 0 0
+draw color Z FF Z FF 0 0
+set __tmp355 88
+op sub __tmp356 hPow DISP_MID
+op max __tmp358 __tmp356 1
+draw rect POWER_METER_LEFT __tmp355 POWER_METER_WIDTH __tmp358 0 0
+drawflush DISPLAY
+read __tmp360 CELL 70
+op shl __tmp361 hCopper __tmp360
+read __tmp363 CELL 71
+op shl __tmp364 hLead __tmp363
+op add __tmp365 __tmp361 __tmp364
+read __tmp367 CELL 72
+op shl __tmp368 hSand __tmp367
+op add __tmp369 __tmp365 __tmp368
+read __tmp371 CELL 73
+op shl __tmp372 hCoal __tmp371
+op add __tmp373 __tmp369 __tmp372
+read __tmp375 CELL 74
+op shl __tmp376 hScrap __tmp375
+op add __tmp377 __tmp373 __tmp376
+set enc1a __tmp377
+read __tmp379 CELL 75
+op shl __tmp380 hSpore __tmp379
+read __tmp382 CELL 76
+op shl __tmp383 hTitan __tmp382
+op add __tmp384 __tmp380 __tmp383
+read __tmp386 CELL 77
+op shl __tmp387 hThor __tmp386
+op add __tmp388 __tmp384 __tmp387
+read __tmp390 CELL 78
+op shl __tmp391 hBatt __tmp390
+op add __tmp392 __tmp388 __tmp391
+set enc1b __tmp392
+read __tmp394 CELL 70
+op shl __tmp395 hGraph __tmp394
+read __tmp397 CELL 71
+op shl __tmp398 hSilic __tmp397
+op add __tmp399 __tmp395 __tmp398
+read __tmp401 CELL 72
+op shl __tmp402 hGlass __tmp401
+op add __tmp403 __tmp399 __tmp402
+read __tmp405 CELL 73
+op shl __tmp406 hPyra __tmp405
+op add __tmp407 __tmp403 __tmp406
+read __tmp409 CELL 74
+op shl __tmp410 hBlast __tmp409
+op add __tmp411 __tmp407 __tmp410
+set enc2a __tmp411
+read __tmp413 CELL 75
+op shl __tmp414 hPlast __tmp413
+read __tmp416 CELL 76
+op shl __tmp417 hPhase __tmp416
+op add __tmp418 __tmp414 __tmp417
+read __tmp420 CELL 77
+op shl __tmp421 hSurge __tmp420
+op add __tmp422 __tmp418 __tmp421
+read __tmp424 CELL 78
+op shl __tmp425 hPow __tmp424
+op add __tmp426 __tmp422 __tmp425
+set enc2b __tmp426
+op add __tmp427 enc1a enc1b
+op add __tmp429 DISP_SCAN_POS 100
+write __tmp427 CELL __tmp429
+op add __tmp430 enc2a enc2b
+op add __tmp432 DISP_SCAN_POS 300
+write __tmp430 CELL __tmp432
+sensor displayCfgVal DISPLAY_CFG @config
+set ast0 displayCfgVal
+jump 454 notEqual ast0 @copper
+set __tmp434 hCopper
+jump 500 always 0 0
+jump 457 notEqual ast0 @lead
+set __tmp434 hLead
+jump 500 always 0 0
+jump 460 notEqual ast0 @sand
+set __tmp434 hSand
+jump 500 always 0 0
+jump 463 notEqual ast0 @coal
+set __tmp434 hCoal
+jump 500 always 0 0
+jump 466 notEqual ast0 @scrap
+set __tmp434 hScrap
+jump 500 always 0 0
+jump 469 notEqual ast0 @spore-pod
+set __tmp434 hSpore
+jump 500 always 0 0
+jump 472 notEqual ast0 @titanium
+set __tmp434 hTitan
+jump 500 always 0 0
+jump 475 notEqual ast0 @thorium
+set __tmp434 hThor
+jump 500 always 0 0
+jump 478 notEqual ast0 @graphite
+set __tmp434 hGraph
+jump 500 always 0 0
+jump 481 notEqual ast0 @silicon
+set __tmp434 hSilic
+jump 500 always 0 0
+jump 484 notEqual ast0 @metaglass
+set __tmp434 hGlass
+jump 500 always 0 0
+jump 487 notEqual ast0 @pyratite
+set __tmp434 hPyra
+jump 500 always 0 0
+jump 490 notEqual ast0 @blast-compound
+set __tmp434 hBlast
+jump 500 always 0 0
+jump 493 notEqual ast0 @plastinium
+set __tmp434 hPlast
+jump 500 always 0 0
+jump 496 notEqual ast0 @phase-fabric
+set __tmp434 hPhase
+jump 500 always 0 0
+jump 499 notEqual ast0 @surge-alloy
+set __tmp434 hSurge
+jump 500 always 0 0
+set __tmp434 hPow
+set LINE_HEIGHT __tmp434
+draw color GREY_DARK GREY_DARK GREY_DARK FF 0 0
+draw rect DISP_SCAN_POS MAIN_GRAPH_BOTTOM ONE MAIN_GRAPH_HEIGHT 0 0
+jump 538 notEqual displayCfgVal null
+draw color Z GREY_DARK GREY_MID FF 0 0
+draw line Z GUIDE_POW_n7k MAIN_GRAPH_RIGHT GUIDE_POW_n7k 0 0
+draw line Z GUIDE_POW_n4k MAIN_GRAPH_RIGHT GUIDE_POW_n4k 0 0
+draw line Z GUIDE_POW_n700 MAIN_GRAPH_RIGHT GUIDE_POW_n700 0 0
+draw line Z GUIDE_POW_n400 MAIN_GRAPH_RIGHT GUIDE_POW_n400 0 0
+draw line Z GUIDE_POW_n70 MAIN_GRAPH_RIGHT GUIDE_POW_n70 0 0
+draw line Z GUIDE_POW_n40 MAIN_GRAPH_RIGHT GUIDE_POW_n40 0 0
+draw line Z GUIDE_POW_n7 MAIN_GRAPH_RIGHT GUIDE_POW_n7 0 0
+draw line Z GUIDE_POW_n4 MAIN_GRAPH_RIGHT GUIDE_POW_n4 0 0
+draw line Z GUIDE_POW_p7k MAIN_GRAPH_RIGHT GUIDE_POW_p7k 0 0
+draw line Z GUIDE_POW_p4k MAIN_GRAPH_RIGHT GUIDE_POW_p4k 0 0
+draw line Z GUIDE_POW_p700 MAIN_GRAPH_RIGHT GUIDE_POW_p700 0 0
+draw line Z GUIDE_POW_p400 MAIN_GRAPH_RIGHT GUIDE_POW_p400 0 0
+draw line Z GUIDE_POW_p70 MAIN_GRAPH_RIGHT GUIDE_POW_p70 0 0
+draw line Z GUIDE_POW_p40 MAIN_GRAPH_RIGHT GUIDE_POW_p40 0 0
+draw line Z GUIDE_POW_p7 MAIN_GRAPH_RIGHT GUIDE_POW_p7 0 0
+draw line Z GUIDE_POW_p4 MAIN_GRAPH_RIGHT GUIDE_POW_p4 0 0
+draw color GREY_DARK GREY_MID GREY_LIGHT FF 0 0
+draw line Z GUIDE_POW_n1k MAIN_GRAPH_RIGHT GUIDE_POW_n1k 0 0
+draw line Z GUIDE_POW_n100 MAIN_GRAPH_RIGHT GUIDE_POW_n100 0 0
+draw line Z GUIDE_POW_n10 MAIN_GRAPH_RIGHT GUIDE_POW_n10 0 0
+draw line Z GUIDE_POW_p1k MAIN_GRAPH_RIGHT GUIDE_POW_p1k 0 0
+draw line Z GUIDE_POW_p100 MAIN_GRAPH_RIGHT GUIDE_POW_p100 0 0
+draw line Z GUIDE_POW_p10 MAIN_GRAPH_RIGHT GUIDE_POW_p10 0 0
+draw color FF FF FF FF 0 0
+draw line Z GUIDE_POW_MID MAIN_GRAPH_RIGHT GUIDE_POW_MID 0 0
+jump 533 greaterThanEq hPow 64
+draw color FF Z Z FF 0 0
+jump 534 always 0 0
+draw color Z FF Z FF 0 0
+op add __tmp441 64 MAIN_GRAPH_BOTTOM
+op add __tmp442 hPow MAIN_GRAPH_BOTTOM
+draw line DISP_SCAN_POS __tmp441 DISP_SCAN_POS __tmp442 0 0
+jump 557 always 0 0
+draw color Z GREY_MID GREY_LIGHT FF 0 0
+draw rect DISP_SCAN_POS MAIN_GRAPH_BOTTOM ONE LINE_HEIGHT 0 0
+draw color Z GREY_DARK GREY_MID FF 0 0
+draw line Z GUIDE_01K MAIN_GRAPH_RIGHT GUIDE_01K 0 0
+draw line Z GUIDE_02K MAIN_GRAPH_RIGHT GUIDE_02K 0 0
+draw line Z GUIDE_03K MAIN_GRAPH_RIGHT GUIDE_03K 0 0
+draw line Z GUIDE_04K MAIN_GRAPH_RIGHT GUIDE_04K 0 0
+draw line Z GUIDE_05K MAIN_GRAPH_RIGHT GUIDE_05K 0 0
+draw line Z GUIDE_06K MAIN_GRAPH_RIGHT GUIDE_06K 0 0
+draw line Z GUIDE_07K MAIN_GRAPH_RIGHT GUIDE_07K 0 0
+draw line Z GUIDE_08K MAIN_GRAPH_RIGHT GUIDE_08K 0 0
+draw line Z GUIDE_09K MAIN_GRAPH_RIGHT GUIDE_09K 0 0
+draw line Z GUIDE_10K MAIN_GRAPH_RIGHT GUIDE_10K 0 0
+draw line Z GUIDE_11K MAIN_GRAPH_RIGHT GUIDE_11K 0 0
+draw line Z GUIDE_12K MAIN_GRAPH_RIGHT GUIDE_12K 0 0
+draw line Z GUIDE_13K MAIN_GRAPH_RIGHT GUIDE_13K 0 0
+draw line Z GUIDE_14K MAIN_GRAPH_RIGHT GUIDE_14K 0 0
+draw line Z GUIDE_15K MAIN_GRAPH_RIGHT GUIDE_15K 0 0
+draw line Z GUIDE_16K MAIN_GRAPH_RIGHT GUIDE_16K 0 0
+draw color Z Z FF FF 0 0
+op add __tmp443 MAIN_GRAPH_BOTTOM LINE_HEIGHT
+draw rect DISP_SCAN_POS __tmp443 ONE ONE 0 0
+draw color GREY_LIGHT GREY_LIGHT FF FF 0 0
+op add __tmp444 MAIN_GRAPH_BOTTOM LINE_HEIGHT
+draw rect DISP_SCAN_POS __tmp444 ONE ONE 0 0
+drawflush DISPLAY
+op add __tmp446 DISP_SCAN_POS 1
+op mod DISP_SCAN_POS __tmp446 170
+end

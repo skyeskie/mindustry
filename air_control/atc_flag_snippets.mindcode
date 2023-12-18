@@ -1,0 +1,57 @@
+//SET LOCATION FLAG
+FLAG = (@thisx * 10000) + @thisy
+//For multiple binds
+subFlag = FLAG + (nBind / 100)
+
+
+//FLAG CHECK
+if(floor(@unit.flag) == FLAG)
+  //Out flagged ship
+end
+
+
+//FLAG CHECK specific ship
+//unitNum = 1 .. unitMax
+if( unitNum == unitMax )
+  unitNum = 0
+end
+unitNum += 1
+check = FLAG + (unitNum / 100)
+if(@unit.flag == check)
+  //Ship we want
+end
+
+
+//RESET
+if(@unit.controller == @unit)
+  if(floor(@unit.flag) == 0)
+    print("RESET ", @unit, " # ", @unit.flag, "\n")
+    flag(0)
+  end
+end
+
+
+//
+// Pull out state
+//
+uFlag = @unit.flag
+if(floor(uFlag) == FLAG) {
+  unitNum = (uFlag * 100) % 100
+
+  STATE = CELL[unitNum]
+  
+  //or for Parameter.STATE
+  
+  val = CELL[unitNum]
+  STATE = (val * 10) % 10
+  PARAM = floor(val)
+end
+
+
+//One interesting alternative would be to, rather than number by "<location>.<unit#>",
+//set the flag to "<location>.<state>"
+//For multiple units, this would need one of two approaches:
+// - Increase number based on work remaining, then release when done
+// - Have an initial counting
+//   - XY.001, XY.002, etc. If normally 1-digit state, all would map to 0
+//   - Normal states XY.1, XY.2, etc as-is, and 0 is "grabbed unit, but no instructions"

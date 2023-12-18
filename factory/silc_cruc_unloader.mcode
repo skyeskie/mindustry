@@ -1,0 +1,18 @@
+set UNLOADER unloader1
+set CRUCIBLE crucible1
+sensor nSand CRUCIBLE @sand
+sensor nCoal CRUCIBLE @coal
+jump 13 greaterThan nSand nCoal
+jump 8 greaterThan nSand nPyratite
+control config UNLOADER @sand 0 0 0
+jump 12 always 0 0
+jump 11 greaterThanEq nPyratite nCoal
+control config UNLOADER @pyratite 0 0 0
+jump 12 always 0 0
+control config UNLOADER @coal 0 0 0
+jump 17 always 0 0
+jump 16 greaterThanEq nPyratite nCoal
+control config UNLOADER @pyratite 0 0 0
+jump 17 always 0 0
+control config UNLOADER @coal 0 0 0
+end

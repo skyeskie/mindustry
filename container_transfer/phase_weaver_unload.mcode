@@ -1,0 +1,60 @@
+printflush message1
+set CONTAINER vault1
+set UNL1 unloader1
+set UNL2 unloader2
+set UNL3 unloader3
+set UNL4 unloader4
+sensor MAX CONTAINER @itemCapacity
+op mul TGT MAX 0.9
+sensor nThor CONTAINER @thorium
+sensor nSand CONTAINER @sand
+op lessThan rSand nSand TGT
+op lessThan rThor nThor TGT
+op shl __tmp8 rThor 1
+op add __tmp9 __tmp8 rSand
+set flag __tmp9
+print "\nFlag: "
+print flag
+jump 20 notEqual rThor true
+set __tmp11 "red"
+jump 21 always 0 0
+set __tmp11 "green"
+set cThor __tmp11
+jump 25 notEqual rSand true
+set __tmp14 "red"
+jump 26 always 0 0
+set __tmp14 "green"
+set cSand __tmp14
+print "Thorium: ["
+print cThor
+print "]"
+print nThor
+print "[] / "
+print MAX
+print "\nSand: ["
+print cSand
+print "]"
+print nSand
+print "[] / "
+print MAX
+op notEqual runUnload flag 0
+control enabled UNL1 runUnload 0 0 0
+control enabled UNL2 runUnload 0 0 0
+control enabled UNL3 runUnload 0 0 0
+control enabled UNL4 runUnload 0 0 0
+set ast0 flag
+set __tmp26 1
+jump 49 notEqual ast0 __tmp26
+set __tmp25 @sand
+jump 54 always 0 0
+set __tmp27 2
+jump 53 notEqual ast0 __tmp27
+set __tmp25 @thorium
+jump 54 always 0 0
+set __tmp25 null
+set unlMat __tmp25
+control config UNL1 unlMat 0 0 0
+control config UNL2 unlMat 0 0 0
+control config UNL3 unlMat 0 0 0
+control config UNL4 unlMat 0 0 0
+end

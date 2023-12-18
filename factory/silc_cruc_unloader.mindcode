@@ -1,0 +1,29 @@
+// Grabs resources from container for Silicon crucible
+// Need to test how handles delay (or unloader right next ?)
+
+CONTAINER=container1
+UNLOADER=unloader1
+CRUCIBLE=crucible1
+
+nSand = CRUCIBLE.sand
+nCoal = CRUCIBLE.coal
+nPyr = CRUCIBLE.pyratite
+
+// Prioritizes Sand > coal > pyratite
+if nSand <= nCoal
+  if nSand <= nPyratite
+    UNLOADER.config = @sand
+  else
+    if nPyratite < nCoal
+      UNLOADER.config = @pyratite
+    else
+      UNLOADER.config = @coal
+    end
+  end
+else
+  if nPyratite < nCoal
+    UNLOADER.config = @pyratite
+  else
+    UNLOADER.config = @coal
+  end
+end

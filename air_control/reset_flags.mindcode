@@ -1,0 +1,44 @@
+// Scans seem to be RR
+
+// Should be able to identify 1st, scan until hit again
+// Might need flag, though position should be decently reliable
+
+// For reset, want to set flag to 0 if not actively used
+
+// Currently looked at using processor position as flag
+// - Could have second processor check disable conditions
+//   - Then just check if processor enabled
+// - Could use switch/light next to processor for active indicator
+
+// Both of these have issues if processor grabs second
+// ie, processor destroyed then replacement grabs new unit
+
+// Could do negotiation with main processor (MPROC)
+// Flag base: 10000*X + Y of processor as {FLAG} (123, 456) -> 1230456
+// 1. Processor A scans until finds
+//    - A unit with 0 flag
+//    - A unit with it's own flag base
+// 2. If own flag base, use that one and move on
+// 3. Set flag of 0 to {FLAG}.1, indicating request for that unit
+// 4. Wait for MPROC, watching FLAG
+// 5. If flag set to 0, then return to 1
+// 6. If flag set to base, use that unit
+
+// meanwhile, MPROC is always scanning the units
+// - Update count of units
+// - Verify processor still exists for each flagged unit
+// - Could recall low-health
+// - when sees {FLAG}.1:
+//   1. Verify we don't have {FLAG} present in another unit
+//      - Could scan until hit the .1 again
+//      - Or could keep flag info stored in memory cell
+//   2. If have another unit, reject the request by setting flag to 0
+//   3. Otherwise, accept be setting to {FLAG}.0
+
+// TODO:
+// Could verify how robust the location scanning is
+// - Do we need to fuzzy match location for the drifting of unit?
+// - What happens if unit is moving when scan through?
+// - If works well, could do without broker
+// - If doesn't work well, could have the broker claim a unit by flagging it
+//   - would need re-claim logic, etc

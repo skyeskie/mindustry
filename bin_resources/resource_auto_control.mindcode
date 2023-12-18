@@ -37,7 +37,7 @@ printflush(message1)
 print("SETUP:\n")
 
 CELL=cell1
-MASK16BIT = (1 << 16) - 1
+MASK16BIT = 0xFFFF
 
 //TODO: loop until find a CELL ?
 

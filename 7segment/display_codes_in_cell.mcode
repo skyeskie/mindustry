@@ -1,0 +1,11 @@
+write 0b1110111 cell1 0
+write 0b0100100 cell1 1
+write 0b1011101 cell1 2
+write 0b1101101 cell1 3
+write 0b0101110 cell1 4
+write 0b1101011 cell1 5
+write 0b1111011 cell1 6
+write 0b0100101 cell1 7
+write 0b1111111 cell1 8
+write 0b1101111 cell1 9
+ 

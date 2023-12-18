@@ -1,0 +1,104 @@
+sensor target sorter1 @config
+getlink turret 2
+jump 22 equal target @copper
+jump 27 equal target @lead
+jump 32 equal target @graphite
+jump 37 equal target @blast-compound
+jump 42 equal target @silicon
+jump 47 equal target @titanium
+jump 52 equal target @metaglass
+jump 57 equal target @spore-pod
+jump 62 equal target @surge-alloy
+jump 67 equal target @plastanium
+jump 72 equal target @thorium
+jump 77 equal target @phase-fabric
+jump 82 equal target @coal
+jump 87 equal target @sand
+jump 92 equal target @pyratite
+jump 100 equal target @scrap
+sensor result block1 @scrap
+print "auto"
+printflush message1
+end
+radar enemy any any distance turret 1 enemy
+print "first"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any distance turret last enemy
+print "last"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy flying any distance turret 1 enemy
+print "air"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy boss any distance turret 1 enemy
+print "boss"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any armor turret 1 enemy
+print "heavy"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any health turret 1 enemy
+print "strongest"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any health turret last enemy
+print "weakest"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy ground any distance turret 1 enemy
+print "ground"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any shield turret 1 enemy
+print "shielded"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy player any shield turret 1 enemy
+print "commander"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any shield turret last enemy
+print "unshielded"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any health turret 1 enemy
+print "healthly"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any health turret last enemy
+print "dying"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar enemy any any armor turret last enemy
+print "light"
+printflush message1
+control shootp turret enemy enemy 0 0
+end
+radar player any any distance turret 1 player
+print "focus"
+printflush message1
+sensor x player @shootX
+sensor y player @shootY
+sensor e player @shooting
+control shoot turret x y e 0
+end
+print "stop"
+printflush message1
+control enabled turret 0 0 0 0
+end

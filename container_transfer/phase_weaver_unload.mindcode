@@ -1,0 +1,44 @@
+printflush(message1)
+CONTAINER=vault1
+UNL1=unloader1
+UNL2=unloader2
+UNL3=unloader3
+UNL4=unloader4
+
+MAX = CONTAINER.itemCapacity
+TGT = MAX * 0.9
+nThor = CONTAINER.thorium
+nSand = CONTAINER.sand
+
+rSand = nSand < TGT
+rThor = nThor < TGT
+
+flag = (rThor << 1) + rSand
+print("\nFlag: ", flag)
+
+cThor = rThor ? "red" : "green"
+cSand = rSand ? "red" : "green"
+
+print("Thorium: [", cThor, "]", nThor, "[] / ", MAX)
+print("\nSand: [", cSand, "]", nSand, "[] / ", MAX)
+
+
+// Set enable/disable
+runUnload = flag != 0
+UNL1.enabled = runUnload
+UNL2.enabled = runUnload
+UNL3.enabled = runUnload
+UNL4.enabled = runUnload
+
+unlMat = case flag
+when 1
+  @sand
+when 2
+  @thorium
+else
+  null
+end
+UNL1.config = unlMat
+UNL2.config = unlMat
+UNL3.config = unlMat
+UNL4.config = unlMat

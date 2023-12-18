@@ -1,0 +1,138 @@
+if(STATE === null || STATE < 0 || STATE > 6)
+  print("Init variables\n")
+  FLAG = @thisx * 10000 + @thisy
+  STATE_ULOOK = 0
+  STATE_UBIND = 1
+  STATE_DETERMINE = 2
+  STATE_FLY_SRC = 3
+  STATE_LOAD = 4
+  STATE_FLY_TGT = 5
+  STATE_UNLOAD = 6
+
+  STATE = STATE_DETERMINE
+
+  UNIT_TYPE = @flare
+  MSG = message1
+  STOCKPILE = container1
+  cfg1 = unloader1
+  cfg2 = unloader2
+
+  STOCK_MAX = STOCKPILE.itemCapacity
+  Sx = STOCKPILE.x
+  Sy = STOCKPILE.y
+end
+
+case STATE
+when STATE_ULOOK
+  print("State look\n\n")
+when STATE_UBIND
+  print("Bind flare\n\n")
+when STATE_DETERMINE
+  print("Idle\n\n")
+when STATE_FLY_SRC
+  print("Fetch ammo\n\n")
+when STATE_LOAD
+  print("Load ammo\n\n")
+when STATE_FLY_TGT
+  print("Deliver ammo\n\n")
+when STATE_UNLOAD
+  print("Unload ammo\n\n")
+end
+
+if @unit === null
+  STATE = STATE_ULOOK
+end
+
+while STATE == STATE_ULOOK
+  print("Looking for ", UNIT_TYPE)
+  if @unit === null
+    print("\n[red]No unit bound")
+    ubind(UNIT_TYPE)
+  else
+    print("\nFound unit #", @unit.flag)
+    if @unit.flag < 1 || @unit.flag == FLAG
+      print(" [green]Can bind\n")
+      STATE = STATE_UBIND
+    end
+  end
+  printflush(MSG)
+end
+
+if STATE == STATE_UBIND
+  print("Binding unit\n")
+  flag(FLAG)
+  found = ulocate(building, core, false, Cx, Cy, CORE)
+  FLY_CAP = @unit.itemCapacity
+  STATE = STATE_DETERMINE
+end
+
+print("Driving: ", @unit, " # ", @unit.flag, "\n")
+print("  at (", floor(@unit.x), ", ", floor(@unit.y), ")\n")
+
+if STATE == STATE_DETERMINE
+  print("Determining what to resupply")
+  
+  ammo1 = cfg1.config
+  ammo2 = cfg2.config
+  
+  AMMO = ammo1
+  FETCH_N = 0
+
+  if ammo1 == ammo2
+    print("Same ammo. Looking for ", AMMO)
+    need = STOCK_MAX - STOCKPILE.sensor(AMMO)
+    print("\n  -> Need ", need, "\n")
+    FETCH_N = min(need, FLY_CAP)
+  else
+    //TODO: Compare amounts in container/core
+    
+    //TODO: Could even /set/ ammo and fallback
+  end
+  
+  if FETCH_N > 0
+    STATE = STATE_FLY_SRC
+  end
+end
+
+if STATE == STATE_FLY_SRC
+  print("Fly to ",CORE, "(", Cx, ",", Cy, ")\n")
+  approach(Cx, Cy, 1)
+  
+  if( within(Cx, Cy, 1) )
+    STATE = STATE_LOAD
+  end
+end
+
+if STATE == STATE_LOAD
+  print("Loading ", AMMO, " (", FETCH_N, ")\n")
+  itemTake(CORE, AMMO, FETCH_N)
+  
+  if(@unit.totalItems >= FETCH_N)
+    STATE = STATE_FLY_TGT
+  end
+end
+
+if STATE == STATE_FLY_TGT
+  print("Deliver to ", STOCKPILE, "\n")
+  
+  approach(Sx, Sy, 1)
+  
+  if( within(Sx, Sy, 1) )
+    STATE = STATE_UNLOAD
+  end
+end
+
+if STATE == STATE_UNLOAD
+  print("Unloading to stockpile\n")
+
+  itemDrop(STOCKPILE, FETCH_N)
+  
+  if(@unit.totalItems == 0)
+    STATE = STATE_DETERMINE
+  end
+end
+
+print("\n-----------------------")
+print("\nUnitCap: ", @unit.itemCapacity)
+print("\nUnitCarry: ", @unit.totalItems)
+printflush(message1)  

@@ -1,0 +1,82 @@
+jump 4 equal SETUP 1
+set SETUP 1
+set CONTAINER nucleus1
+jump 4 always 0 0
+sensor __tmp4 node1 @powerNetIn
+sensor __tmp5 node1 @powerNetOut
+op sub pow __tmp4 __tmp5
+jump 29 greaterThanEq pow 0
+control enabled weaver1 false 0 0 0
+control enabled weaver2 false 0 0 0
+control enabled kiln1 false 0 0 0
+control enabled mixer1 false 0 0 0
+control enabled crucible1 false 0 0 0
+control enabled smelter1 false 0 0 0
+control enabled press1 false 0 0 0
+control enabled cultivator9 false 0 0 0
+control enabled mixer2 false 0 0 0
+control enabled mixer3 false 0 0 0
+control enabled cultivator6 false 0 0 0
+control enabled cultivator7 false 0 0 0
+control enabled cultivator8 false 0 0 0
+control enabled compressor1 false 0 0 0
+control enabled press2 false 0 0 0
+control enabled cultivator1 false 0 0 0
+control enabled cultivator2 false 0 0 0
+control enabled cultivator3 false 0 0 0
+control enabled cultivator4 false 0 0 0
+control enabled cultivator5 false 0 0 0
+jump 81 always 0 0
+sensor copp CONTAINER @copper
+sensor lead CONTAINER @lead
+sensor sand CONTAINER @sand
+sensor coal CONTAINER @coal
+sensor titn CONTAINER @titanium
+sensor thor CONTAINER @thorium
+sensor grph CONTAINER @graphite
+sensor silc CONTAINER @silicon
+sensor mgls CONTAINER @metaglass
+sensor pyra CONTAINER @pyratite
+sensor blst CONTAINER @blast-compound
+sensor plas CONTAINER @plastanium
+sensor pfab CONTAINER @phase-fabric
+sensor srge CONTAINER @surge-alloy
+op min mSandThor sand thor
+op min mSandLead sand lead
+op min mSLCoal mSandLead coal
+op min mSandCoal sand coal
+op min mSCPyra mSandCoal pyra
+op min mCoppLead copp lead
+op min mTitnSilc titn silc
+op min mCLTS mCoppLead mTitnSilc
+op greaterThan thrSand sand 1000
+op greaterThan __tmp36 mSandThor pfab
+op land __tmp37 thrSand __tmp36
+set runWeave __tmp37
+control enabled weaver1 runWeave 0 0 0
+control enabled weaver2 runWeave 0 0 0
+op greaterThan __tmp38 mSandLead mgls
+control enabled kiln1 __tmp38 0 0 0
+op greaterThan __tmp39 mSLCoal pyra
+control enabled mixer1 __tmp39 0 0 0
+op greaterThan runBlast mSLCoal blst
+control enabled mixer2 runBlast 0 0 0
+control enabled mixer3 runBlast 0 0 0
+control enabled cultivator6 runBlast 0 0 0
+control enabled cultivator7 runBlast 0 0 0
+control enabled cultivator8 runBlast 0 0 0
+op greaterThan __tmp41 coal grph
+control enabled press1 __tmp41 0 0 0
+op greaterThan __tmp42 mSCPyra silc
+control enabled crucible1 __tmp42 0 0 0
+op greaterThan __tmp43 mCLTS srge
+control enabled smelter1 __tmp43 0 0 0
+op greaterThan runPlas titn plas
+control enabled compressor1 runPlas 0 0 0
+control enabled press2 runPlas 0 0 0
+control enabled cultivator1 runPlas 0 0 0
+control enabled cultivator2 runPlas 0 0 0
+control enabled cultivator3 runPlas 0 0 0
+control enabled cultivator4 runPlas 0 0 0
+control enabled cultivator5 runPlas 0 0 0
+end

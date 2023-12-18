@@ -1,0 +1,179 @@
+op strictEqual __tmp0 STATE null
+op lessThan __tmp2 STATE 0
+op or __tmp3 __tmp0 __tmp2
+op greaterThan __tmp5 STATE 6
+op or __tmp6 __tmp3 __tmp5
+jump 27 notEqual __tmp6 true
+print "Init variables\n"
+op mul __tmp10 @thisx 10000
+op add __tmp11 __tmp10 @thisy
+set FLAG __tmp11
+set STATE_ULOOK 0
+set STATE_UBIND 1
+set STATE_DETERMINE 2
+set STATE_FLY_SRC 3
+set STATE_LOAD 4
+set STATE_FLY_TGT 5
+set STATE_UNLOAD 6
+set STATE STATE_DETERMINE
+set UNIT_TYPE @flare
+set MSG message1
+set STOCKPILE container1
+set cfg1 unloader1
+set cfg2 unloader2
+sensor STOCK_MAX STOCKPILE @itemCapacity
+sensor Sx STOCKPILE @x
+sensor Sy STOCKPILE @y
+jump 27 always 0 0
+set ast0 STATE
+jump 31 notEqual ast0 STATE_ULOOK
+print "State look\n\n"
+jump 49 always 0 0
+jump 34 notEqual ast0 STATE_UBIND
+print "Bind flare\n\n"
+jump 49 always 0 0
+jump 37 notEqual ast0 STATE_DETERMINE
+print "Idle\n\n"
+jump 49 always 0 0
+jump 40 notEqual ast0 STATE_FLY_SRC
+print "Fetch ammo\n\n"
+jump 49 always 0 0
+jump 43 notEqual ast0 STATE_LOAD
+print "Load ammo\n\n"
+jump 49 always 0 0
+jump 46 notEqual ast0 STATE_FLY_TGT
+print "Deliver ammo\n\n"
+jump 49 always 0 0
+jump 49 notEqual ast0 STATE_UNLOAD
+print "Unload ammo\n\n"
+jump 49 always 0 0
+jump 52 notEqual @unit null
+set STATE STATE_ULOOK
+jump 52 always 0 0
+jump 74 notEqual STATE STATE_ULOOK
+print "Looking for "
+print UNIT_TYPE
+jump 59 notEqual @unit null
+print "\n[red]No unit bound"
+ubind UNIT_TYPE
+jump 72 always 0 0
+set __tmp37 "\nFound unit #"
+sensor __tmp38 @unit @flag
+print __tmp37
+print __tmp38
+sensor __tmp39 @unit @flag
+op lessThan __tmp41 __tmp39 1
+sensor __tmp42 @unit @flag
+op equal __tmp43 __tmp42 FLAG
+op or __tmp44 __tmp41 __tmp43
+jump 72 notEqual __tmp44 true
+print " [green]Can bind\n"
+set STATE STATE_UBIND
+jump 72 always 0 0
+printflush MSG
+jump 52 always 0 0
+jump 81 notEqual STATE STATE_UBIND
+print "Binding unit\n"
+ucontrol flag FLAG 0 0 0 0
+ulocate building core false @copper Cx Cy __tmp50 CORE
+sensor FLY_CAP @unit @itemCapacity
+set STATE STATE_DETERMINE
+jump 81 always 0 0
+set __tmp52 "Driving: "
+set __tmp53 " # "
+sensor __tmp54 @unit @flag
+set __tmp56 "  at ("
+print __tmp52
+print @unit
+print __tmp53
+print __tmp54
+print "\n"
+sensor __tmp57 @unit @x
+op floor __tmp58 __tmp57 0
+set __tmp59 ", "
+sensor __tmp60 @unit @y
+op floor __tmp61 __tmp60 0
+print __tmp56
+print __tmp58
+print __tmp59
+print __tmp61
+print ")\n"
+jump 120 notEqual STATE STATE_DETERMINE
+print "Determining what to resupply"
+sensor ammo1 cfg1 @config
+sensor ammo2 cfg2 @config
+set AMMO ammo1
+set FETCH_N 0
+jump 116 notEqual ammo1 ammo2
+print "Same ammo. Looking for "
+print AMMO
+sensor __tmp72 STOCKPILE AMMO
+op sub need STOCK_MAX __tmp72
+print "\n  -> Need "
+print need
+print "\n"
+op min FETCH_N need FLY_CAP
+jump 116 always 0 0
+jump 119 lessThanEq FETCH_N 0
+set STATE STATE_FLY_SRC
+jump 119 always 0 0
+jump 120 always 0 0
+jump 136 notEqual STATE STATE_FLY_SRC
+print "Fly to "
+print CORE
+print "("
+print Cx
+print ","
+print Cy
+print ")\n"
+set __tmp86 1
+ucontrol approach Cx Cy __tmp86 0 0
+set __tmp87 1
+ucontrol within Cx Cy __tmp87 __tmp88 0
+jump 135 notEqual __tmp88 true
+set STATE STATE_LOAD
+jump 135 always 0 0
+jump 136 always 0 0
+jump 148 notEqual STATE STATE_LOAD
+print "Loading "
+print AMMO
+print " ("
+print FETCH_N
+print ")\n"
+ucontrol itemTake CORE AMMO FETCH_N 0 0
+sensor __tmp95 @unit @totalItems
+jump 147 lessThan __tmp95 FETCH_N
+set STATE STATE_FLY_TGT
+jump 147 always 0 0
+jump 148 always 0 0
+jump 160 notEqual STATE STATE_FLY_TGT
+print "Deliver to "
+print STOCKPILE
+print "\n"
+set __tmp102 1
+ucontrol approach Sx Sy __tmp102 0 0
+set __tmp103 1
+ucontrol within Sx Sy __tmp103 __tmp104 0
+jump 159 notEqual __tmp104 true
+set STATE STATE_UNLOAD
+jump 159 always 0 0
+jump 160 always 0 0
+jump 168 notEqual STATE STATE_UNLOAD
+print "Unloading to stockpile\n"
+ucontrol itemDrop STOCKPILE FETCH_N 0 0 0
+sensor __tmp109 @unit @totalItems
+jump 167 notEqual __tmp109 0
+set STATE STATE_DETERMINE
+jump 167 always 0 0
+jump 168 always 0 0
+set __tmp114 "\nUnitCap: "
+print "\n-----------------------"
+sensor __tmp115 @unit @itemCapacity
+print __tmp114
+print __tmp115
+set __tmp116 "\nUnitCarry: "
+sensor __tmp117 @unit @totalItems
+print __tmp116
+print __tmp117
+printflush message1
+end

@@ -1,0 +1,28 @@
+sensor runpower switch1 @enabled
+control enabled diode2 runpower 0 0 0
+control enabled generator2 runpower 0 0 0
+control enabled generator3 runpower 0 0 0
+control enabled generator4 runpower 0 0 0
+control enabled generator5 runpower 0 0 0
+control enabled generator6 runpower 0 0 0
+control enabled generator7 runpower 0 0 0
+jump 13 equal runpower true
+print "[red]Power disabled by switch"
+control enabled generator1 false 0 0 0
+printflush message1
+jump 0 always runpower false
+print "[green]Power enabled\n"
+sensor power node1 @powerNetIn
+op lessThanEq needStart power 210
+control enabled generator1 needStart 0 0 0
+jump 19 notEqual needStart true
+print "[blue]Assist start\n"
+sensor batPower battery2 @totalPower
+sensor batCap battery2 @powerCapacity
+op idiv batThr batCap 10
+op greaterThan breaker batPower batThr
+control enabled diode2 breaker 0 0 0
+jump 26 notEqual breaker false
+print "[red]Surge protect\n"
+printflush message1
+end

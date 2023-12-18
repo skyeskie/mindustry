@@ -1,0 +1,21 @@
+// This is for fast management of the unloaders
+// The other processor takes so long between scans, it could completely
+// unload the container before it disables the unloader.
+// With a separate processor, it takes < 0.5sec on a micro processor
+//
+// Potential optimization:
+// Currently full loop is 18 lines
+// - delay 2 from read to control (read, compare, control) - optimal
+// - delay up to 19 between below threshold and disable
+// - Could remove 1 from changing "end" to copy line 1
+// - Could remove 3 by hand-coding loop and staggering unloader config updates
+
+if CONTAINER === null
+  CONTAINER = container1
+  Target = CONTAINER.itemCapacity \ 2
+end
+
+unloader1.enabled = CONTAINER.sensor(unloader1.config) > Target
+unloader2.enabled = CONTAINER.sensor(unloader2.config) > Target
+unloader3.enabled = CONTAINER.sensor(unloader3.config) > Target
+unloader4.enabled = CONTAINER.sensor(unloader4.config) > Target
